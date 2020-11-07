@@ -1,31 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/TileMapEditor.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/contracts/CanvasHandlerReferenceInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/contracts/CanvasImageReference.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/controllers/PixelDialogController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/helpers/BaseCanvasView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/helpers/TileMapCanvasView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/helpers/TileSetCanvasView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/models/Point.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/models/Tile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/models/TileSet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/utils/PixelParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/views/pixeldialog.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../tutorials/Scrollbars/lazy_scrollbar.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../tutorials/Scrollbars/scrollbars.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../tutorials/Scrollbars/themed_scrollbar.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../tutorials/Tray_Notifications_MenuBar/app_menubar.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../tutorials/Tray_Notifications_MenuBar/notifier.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../tutorials/Tray_Notifications_MenuBar/tray.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../tutorials/Tray_Notifications_MenuBar/window_menubar.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../tutorials/Window_API/center_the_window.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../tutorials/Window_API/current_window.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../tutorials/Window_API/focus_the_window.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../tutorials/Window_API/window_attr.gif" beforeDir="false" />
-    </list>
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -89,7 +65,7 @@
     </FindUsagesManager>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectCodeStyleSettingsMigration">
@@ -117,6 +93,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dynamic.classpath" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
