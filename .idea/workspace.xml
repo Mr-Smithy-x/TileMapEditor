@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/sets/emerald tileset.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/sets/gs tileset.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/maps/bg_kit_3.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/maps/bg_kit_3.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nyc/vonley/controllers/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/nyc/vonley/controllers/MainViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nyc/vonley/helpers/BaseCanvasView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/nyc/vonley/helpers/BaseCanvasView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nyc/vonley/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/nyc/vonley/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/nyc/vonley/helpers/TileMapCanvasView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/nyc/vonley/helpers/TileMapCanvasView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nyc/vonley/helpers/TileSetCanvasView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/nyc/vonley/helpers/TileSetCanvasView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nyc/vonley/models/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/nyc/vonley/models/Point.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nyc/vonley/models/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/nyc/vonley/models/Tile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/nyc/vonley/models/TileSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/nyc/vonley/models/TileSet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -262,10 +266,10 @@
       <screen x="0" y="23" width="1680" height="989" />
     </state>
     <state x="280" y="162" width="1071" height="700" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1680.989@0.23.1680.989" timestamp="1604726044195" />
-    <state x="989" y="212" key="#com.intellij.ide.util.MemberChooser" timestamp="1604777196236">
+    <state x="989" y="212" key="#com.intellij.ide.util.MemberChooser" timestamp="1604782694411">
       <screen x="0" y="23" width="1680" height="989" />
     </state>
-    <state x="989" y="212" key="#com.intellij.ide.util.MemberChooser/0.23.1680.989@0.23.1680.989" timestamp="1604777196236" />
+    <state x="989" y="212" key="#com.intellij.ide.util.MemberChooser/0.23.1680.989@0.23.1680.989" timestamp="1604782694411" />
     <state x="680" y="427" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1604698182549">
       <screen x="0" y="23" width="1680" height="989" />
     </state>
@@ -278,22 +282,22 @@
       <screen x="0" y="23" width="1680" height="989" />
     </state>
     <state x="605" y="227" key="#com.intellij.refactoring.move.moveMembers.MoveMembersDialog/0.23.1680.989@0.23.1680.989" timestamp="1604698146073" />
-    <state width="1339" height="467" key="GridCell.Tab.0.bottom" timestamp="1604777464035">
+    <state width="1339" height="467" key="GridCell.Tab.0.bottom" timestamp="1604783245192">
       <screen x="0" y="23" width="1680" height="989" />
     </state>
-    <state width="1339" height="467" key="GridCell.Tab.0.bottom/0.23.1680.989@0.23.1680.989" timestamp="1604777464035" />
-    <state width="1339" height="467" key="GridCell.Tab.0.center" timestamp="1604777464034">
+    <state width="1339" height="467" key="GridCell.Tab.0.bottom/0.23.1680.989@0.23.1680.989" timestamp="1604783245192" />
+    <state width="1339" height="467" key="GridCell.Tab.0.center" timestamp="1604783245191">
       <screen x="0" y="23" width="1680" height="989" />
     </state>
-    <state width="1339" height="467" key="GridCell.Tab.0.center/0.23.1680.989@0.23.1680.989" timestamp="1604777464034" />
-    <state width="1339" height="467" key="GridCell.Tab.0.left" timestamp="1604777464034">
+    <state width="1339" height="467" key="GridCell.Tab.0.center/0.23.1680.989@0.23.1680.989" timestamp="1604783245191" />
+    <state width="1339" height="467" key="GridCell.Tab.0.left" timestamp="1604783245191">
       <screen x="0" y="23" width="1680" height="989" />
     </state>
-    <state width="1339" height="467" key="GridCell.Tab.0.left/0.23.1680.989@0.23.1680.989" timestamp="1604777464034" />
-    <state width="1339" height="467" key="GridCell.Tab.0.right" timestamp="1604777464035">
+    <state width="1339" height="467" key="GridCell.Tab.0.left/0.23.1680.989@0.23.1680.989" timestamp="1604783245191" />
+    <state width="1339" height="467" key="GridCell.Tab.0.right" timestamp="1604783245192">
       <screen x="0" y="23" width="1680" height="989" />
     </state>
-    <state width="1339" height="467" key="GridCell.Tab.0.right/0.23.1680.989@0.23.1680.989" timestamp="1604777464035" />
+    <state width="1339" height="467" key="GridCell.Tab.0.right/0.23.1680.989@0.23.1680.989" timestamp="1604783245192" />
     <state x="374" y="124" key="SettingsEditor" timestamp="1604726137964">
       <screen x="0" y="23" width="1680" height="989" />
     </state>
@@ -302,9 +306,9 @@
       <screen x="0" y="23" width="1680" height="989" />
     </state>
     <state x="583" y="438" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.23.1680.989@0.23.1680.989" timestamp="1604724877263" />
-    <state x="558" y="232" width="670" height="676" key="search.everywhere.popup" timestamp="1604764419999">
+    <state x="558" y="232" width="670" height="676" key="search.everywhere.popup" timestamp="1604780516580">
       <screen x="0" y="23" width="1680" height="989" />
     </state>
-    <state x="558" y="232" width="670" height="676" key="search.everywhere.popup/0.23.1680.989@0.23.1680.989" timestamp="1604764419999" />
+    <state x="558" y="232" width="670" height="676" key="search.everywhere.popup/0.23.1680.989@0.23.1680.989" timestamp="1604780516580" />
   </component>
 </project>

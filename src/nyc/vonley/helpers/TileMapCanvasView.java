@@ -1,8 +1,11 @@
 package nyc.vonley.helpers;
 
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
 import nyc.vonley.contracts.CanvasHandlerReferenceInterface;
 import nyc.vonley.contracts.CanvasImageReference;
 import nyc.vonley.models.Point;
@@ -12,7 +15,7 @@ import nyc.vonley.models.TileSet;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-public class TileMapCanvasView extends BaseCanvasView {
+public class TileMapCanvasView extends BaseCanvasView implements EventHandler<MouseEvent>{
 
     private CanvasHandlerReferenceInterface canvasHandler;
     private CanvasImageReference imageReference;
@@ -31,6 +34,7 @@ public class TileMapCanvasView extends BaseCanvasView {
         tileSet.setTileWidth(tile_width);
         tileSet.setTileHeight(tile_height);
         setPixelDimension(tile_width, tile_height);
+        canvas.setOnDragDetected(this);
     }
 
     @Override
@@ -48,26 +52,46 @@ public class TileMapCanvasView extends BaseCanvasView {
         clear();
     }
 
+    public void drawImage(MouseEvent e){
+        double spx = e.getX();
+        double spy = e.getY();
+        this.drawImage(spx, spy);
+    }
+
+    public void drawImage(double spx, double spy){
+        if (canvasHandler != null) {
+            int selectedIndex = canvasHandler.getReference().getSelectedIndex();
+            BufferedImage image = imageReference.getImage(selectedIndex);
+            int spx_remainder = (int) (spx % tile_width);
+            int spy_remainder = (int) (spy % tile_height);
+            int real_column = (int) (spx - spx_remainder);
+            int real_row = (int) (spy - spy_remainder);
+            long pointKey = Point.toLong(real_column, real_row);
+            int tileGridXOffset = image.getTileGridXOffset();
+            int tileGridYOffset = image.getTileGridYOffset();
+            long valueKey = Tile.toLong(Math.abs(tileGridXOffset), Math.abs(tileGridYOffset), image.getWidth(), image.getHeight());
+            tileSet.remove(pointKey);
+            tileSet.put(pointKey, valueKey);
+            canvas.getGraphicsContext2D().drawImage(SwingFXUtils.toFXImage(image, null), real_column, real_row);
+        }
+    }
+
+
+
     @Override
     public void handle(MouseEvent e) {
         if (e.getEventType() == MouseEvent.MOUSE_CLICKED) {
-            double spx = e.getX();
-            double spy = e.getY();
-            if (canvasHandler != null) {
-                int selectedIndex = canvasHandler.getReference().getSelectedIndex();
-                BufferedImage image = imageReference.getImage(selectedIndex);
-                int spx_remainder = (int) (spx % tile_width);
-                int spy_remainder = (int) (spy % tile_height);
-                int real_column = (int) (spx - spx_remainder);
-                int real_row = (int) (spy - spy_remainder);
-                long pointKey = Point.toLong(real_column, real_row);
-                int tileGridXOffset = image.getTileGridXOffset();
-                int tileGridYOffset = image.getTileGridYOffset();
-                long valueKey = Tile.toLong(Math.abs(tileGridXOffset), Math.abs(tileGridYOffset), image.getWidth(), image.getHeight());
-                tileSet.remove(pointKey);
-                tileSet.put(pointKey, valueKey);
-                canvas.getGraphicsContext2D().drawImage(SwingFXUtils.toFXImage(image, null), real_column, real_row);
-            }
+            drawImage(e);
+        }
+        if(e.getEventType() == MouseEvent.MOUSE_PRESSED) {
+            System.out.println("MOUSE PRESSING");
+        }
+        if(e.getEventType() == MouseEvent.MOUSE_DRAGGED) {
+            drawImage(e);
+        }
+        if(e.getEventType() == MouseEvent.DRAG_DETECTED){
+            canvas.startDragAndDrop();
+            System.out.println("DRAG_DETECTED");
         }
         if (e.getEventType() == MouseEvent.MOUSE_ENTERED_TARGET) {
             mode = MODE_ENTERED;
@@ -106,9 +130,8 @@ public class TileMapCanvasView extends BaseCanvasView {
             this.tileSet.clear();
         }
         this.tileSet = tileSet;
-        for (Long key: tileSet) {
-            Point position = Point.fromLong(key);
-            Tile tile = Tile.create(tileSet.get(key));
+        for (Point position: tileSet.pointIterator()) {
+            Tile tile = Tile.create(tileSet.get(position));
             BufferedImage subImage = imageReference.getSubImage(
                     Math.abs(tile.getPositionX()),
                     Math.abs(tile.getPositionY()),
@@ -121,5 +144,11 @@ public class TileMapCanvasView extends BaseCanvasView {
                     position.getY()
             );
         }
+    }
+
+
+    public void handle(DragEvent event) {
+        System.out.println("DRAGGING");
+        drawImage(event.getX(), event.getY());
     }
 }

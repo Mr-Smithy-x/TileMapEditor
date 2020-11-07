@@ -61,6 +61,10 @@ public class TileSet implements Iterable<Long> {
         this.tiles.putAll(tiles);
     }
 
+    public Iterable<Point> pointIterator() {
+        return () -> tiles.keySet().stream().map(Point::fromLong).iterator();
+    }
+
     @Override
     public Iterator<Long> iterator() {
         return this.tiles.keySet().iterator();
@@ -78,6 +82,10 @@ public class TileSet implements Iterable<Long> {
 
     public long get(Long key) {
         return this.tiles.get(key);
+    }
+
+    public long get(Point position) {
+        return this.tiles.get(position.longValue());
     }
 
     public static class LongMap extends HashMap<Long, Long> {

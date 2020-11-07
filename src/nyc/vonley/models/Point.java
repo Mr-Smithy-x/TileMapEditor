@@ -1,6 +1,7 @@
 package nyc.vonley.models;
 
-public class Point {
+public class Point extends Number implements Comparable<Long> {
+
     int x;
     int y;
 
@@ -41,6 +42,31 @@ public class Point {
         long position_x = (position >> 12) & 0xfff;
         long position_y = (position) & 0xfff;
         return new Point((int) position_x, (int) position_y);
+    }
+
+    @Override
+    public int intValue() {
+        return (int) longValue();
+    }
+
+    @Override
+    public long longValue() {
+        return toLong(this.x, this.y);
+    }
+
+    @Override
+    public float floatValue() {
+        return longValue();
+    }
+
+    @Override
+    public double doubleValue() {
+        return longValue();
+    }
+
+    @Override
+    public int compareTo(Long o) {
+        return Long.compare(toLong(), o);
     }
 
 }
