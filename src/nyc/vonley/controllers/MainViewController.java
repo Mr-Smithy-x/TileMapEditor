@@ -1,6 +1,8 @@
 package nyc.vonley.controllers;
 
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import nyc.vonley.contracts.CanvasImageReference;
 import nyc.vonley.helpers.TileMapCanvasView;
 import nyc.vonley.helpers.TileSetCanvasView;
@@ -20,38 +22,38 @@ import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class MainViewController implements PixelDialogController.PixelDialogHandler, CanvasImageReference {
 
-    public Canvas map_canvas;
-
-    public Canvas tile_canvas;
-    public MenuItem newMenuItem;
-    public MenuItem openMenuItem;
-    public MenuItem closeMenuItem;
-    public MenuItem retileMenuItem;
-    public MenuItem saveMenuItem;
-    private File file;
-    private FileChooser.ExtensionFilter images = new FileChooser.ExtensionFilter("Image", "*.jpg", "*.png");
-    private FileChooser.ExtensionFilter formats = new FileChooser.ExtensionFilter("Formats", "*.json");
+    public Canvas map_canvas, tile_canvas;
+    public MenuItem newMenuItem, openMenuItem, closeMenuItem, retileMenuItem, saveMenuItem;
+    private FileChooser.ExtensionFilter
+            images = new FileChooser.ExtensionFilter("Image", "*.jpg", "*.png"),
+            formats = new FileChooser.ExtensionFilter("Formats", "*.json");
     private FileChooser fileChooser = new FileChooser();
+    private File imageFile, jsonFile;
     private BufferedImage tilemap;
     private List<BufferedImage> tileImages;
     private Stage stage;
     private Scene dialogScene;
     private TileSetCanvasView tileSetHandler;
     private TileMapCanvasView tileMapHandler;
-    private int tile_width;
-    private int tile_height;
+    private int tile_width, tile_height;
 
+    @FXML
+    public void initialize() {
+        newMenuItem.setOnAction(onMenuItemClicked);
+        openMenuItem.setOnAction(onMenuItemClicked);
+        closeMenuItem.setOnAction(onMenuItemClicked);
+        retileMenuItem.setOnAction(onMenuItemClicked);
+        saveMenuItem.setOnAction(onMenuItemClicked);
+    }
 
-    public void showDialog() throws IOException {
+    protected void showDialog() throws IOException {
         if (stage == null) {
             stage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/pixeldialog.fxml"));
@@ -66,14 +68,13 @@ public class MainViewController implements PixelDialogController.PixelDialogHand
         }
     }
 
-
-    public EventHandler<ActionEvent> onMenuItemClicked = event -> {
+    private EventHandler<ActionEvent> onMenuItemClicked = event -> {
         MenuItem source = (MenuItem) event.getSource();
         if (source == newMenuItem) {
             fileChooser.setSelectedExtensionFilter(images);
             File file = fileChooser.showOpenDialog(null);
             if (file != null) {
-                this.file = file;
+                this.imageFile = file;
                 try {
                     tilemap = ImageIO.read(file);
                     showDialog();
@@ -85,12 +86,16 @@ public class MainViewController implements PixelDialogController.PixelDialogHand
             fileChooser.setSelectedExtensionFilter(formats);
             File file = fileChooser.showOpenDialog(null);
             if (file != null) {
-                this.file = file;
+                try {
+                    loadTemplate(file);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         } else if (source == closeMenuItem) {
 
         } else if (source == retileMenuItem) {
-            if (file != null) {
+            if (imageFile != null) {
                 try {
                     showDialog();
                 } catch (IOException e) {
@@ -112,29 +117,33 @@ public class MainViewController implements PixelDialogController.PixelDialogHand
         }
     };
 
-
-
-    public String saveJson() {
+    protected String saveJson() {
         Map<String, Object> data = new HashMap<>();
-        data.put("image", file.getName());
+        data.put("image", imageFile.getName());
         data.put("tile_width", this.tile_width);
         data.put("tile_height", this.tile_height);
         data.put("tile", tileMapHandler.getTiles());
         return new GsonBuilder().setPrettyPrinting().create().toJson(data);
     }
 
-    @FXML
-    public void initialize() {
-        newMenuItem.setOnAction(onMenuItemClicked);
-        openMenuItem.setOnAction(onMenuItemClicked);
-        closeMenuItem.setOnAction(onMenuItemClicked);
-        retileMenuItem.setOnAction(onMenuItemClicked);
-        saveMenuItem.setOnAction(onMenuItemClicked);
-    }
-
     @Override
     public void close() {
         stage.close();
+    }
+
+    public void loadTemplate(File json) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(json));
+        String stub = null;
+        StringBuilder sb = new StringBuilder();
+        while ((stub = br.readLine()) != null) {
+            sb.append(stub);
+        }
+        br.close();
+
+        Map<String, Object> token = new Gson().fromJson(sb.toString(), new TypeToken<Map<String, Object>>() {
+        }.getType());
+
+        System.out.println(token);
     }
 
     @Override
@@ -162,11 +171,9 @@ public class MainViewController implements PixelDialogController.PixelDialogHand
             tileMapHandler.setCanvasHandlerReference(tileSetHandler);
             tileMapHandler.setImageReference(this);
         }
-
         tileMapHandler.setPixelDimension(width, height);
         tileSetHandler.setPixelDimension(width, height);
     }
-
 
     @Override
     public BufferedImage getImage(int index) {

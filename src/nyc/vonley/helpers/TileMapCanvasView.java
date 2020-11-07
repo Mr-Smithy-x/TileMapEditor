@@ -1,10 +1,7 @@
 package nyc.vonley.helpers;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import nyc.vonley.contracts.CanvasHandlerReferenceInterface;
 import nyc.vonley.contracts.CanvasImageReference;
@@ -21,21 +18,11 @@ public class TileMapCanvasView extends BaseCanvasView {
     private CanvasImageReference imageReference;
 
     //<Position, Value>
-    Map<Long, Long> tiles = new HashMap<>();
-
-
-    public void draw(WritableImage toFXImage) {
-        canvas.getGraphicsContext2D().drawImage(toFXImage, last_x, last_y);
-    }
+    private Map<Long, Long> tiles = new HashMap<>();
 
     public TileMapCanvasView(Canvas canvas) {
         super(canvas);
     }
-
-    public Map<Long, Long> getTiles() {
-        return tiles;
-    }
-
 
     @Override
     public void handle(MouseEvent e) {
@@ -72,6 +59,10 @@ public class TileMapCanvasView extends BaseCanvasView {
             mode = MODE_EXITED;
             System.out.println("EXITED");
         }
+    }
+
+    public Map<Long, Long> getTiles() {
+        return tiles;
     }
 
     public void setImageReference(CanvasImageReference imageReference) {

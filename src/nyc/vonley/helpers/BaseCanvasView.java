@@ -2,6 +2,7 @@ package nyc.vonley.helpers;
 
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 
 public class BaseCanvasView implements EventHandler<MouseEvent> {
@@ -17,9 +18,13 @@ public class BaseCanvasView implements EventHandler<MouseEvent> {
     protected Canvas canvas;
     protected double last_y;
     protected double last_x;
-    public int tile_width;
-    public int tile_height;
+    protected int tile_width;
+    protected int tile_height;
 
+
+    public void draw(WritableImage toFXImage) {
+        canvas.getGraphicsContext2D().drawImage(toFXImage, last_x, last_y);
+    }
 
     public void clear() {
         canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -36,8 +41,6 @@ public class BaseCanvasView implements EventHandler<MouseEvent> {
         this.canvas.setOnMouseEntered(this);
         this.canvas.setOnMouseExited(this);
     }
-
-
 
     @Override
     public void handle(MouseEvent event) {

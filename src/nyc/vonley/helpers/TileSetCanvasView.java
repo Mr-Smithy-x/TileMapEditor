@@ -1,14 +1,12 @@
 package nyc.vonley.helpers;
 
-import nyc.vonley.contracts.CanvasHandlerReferenceInterface;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
+import nyc.vonley.contracts.CanvasHandlerReferenceInterface;
 
 public class TileSetCanvasView extends BaseCanvasView implements CanvasHandlerReferenceInterface {
 
-    private boolean selected;
-    private int index;
+    private int selected_index;
 
     public TileSetCanvasView(Canvas canvas) {
         super(canvas);
@@ -24,8 +22,7 @@ public class TileSetCanvasView extends BaseCanvasView implements CanvasHandlerRe
             int index_col = (int) (spx / tile_width);
             int index_row = (int) (spy / tile_height);
             int index = (index_row * columns) + index_col;
-            this.index = index;
-            this.selected = true;
+            this.selected_index = index;
             System.out.println(index);
             mode = MODE_SELECTED;
             System.out.println("SELECTED");
@@ -48,21 +45,13 @@ public class TileSetCanvasView extends BaseCanvasView implements CanvasHandlerRe
         }
     }
 
-
     @Override
     public TileSetCanvasView getReference() {
         return this;
     }
 
-    public void draw(WritableImage toFXImage) {
-        canvas.getGraphicsContext2D().drawImage(toFXImage, last_x, last_y);
-    }
-
     public int getSelectedIndex() {
-        return index;
+        return selected_index;
     }
 
-    public boolean isSelected() {
-        return selected;
-    }
 }
