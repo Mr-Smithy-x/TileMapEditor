@@ -1,6 +1,6 @@
 package nyc.vonley.models;
 
-public class Tile {
+public class Tile extends Number implements Comparable<Long> {
 
     int position_x;
     int position_y;
@@ -57,5 +57,28 @@ public class Tile {
         return toLong(position_x, position_y, pixel_w, pixel_h);
     }
 
+    @Override
+    public int intValue() {
+        return (int) longValue();
+    }
 
+    @Override
+    public long longValue() {
+        return toLong();
+    }
+
+    @Override
+    public float floatValue() {
+        return longValue();
+    }
+
+    @Override
+    public double doubleValue() {
+        return longValue();
+    }
+
+    @Override
+    public int compareTo(Long o) {
+        return Long.compare(toLong(), o);
+    }
 }
