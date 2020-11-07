@@ -1,17 +1,65 @@
 package nyc.vonley.helpers;
 
-import nyc.vonley.contracts.CanvasHandlerReferenceInterface;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Paint;
+import nyc.vonley.contracts.CanvasHandlerReferenceInterface;
+import nyc.vonley.utils.PixelParser;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TileSetCanvasView extends BaseCanvasView implements CanvasHandlerReferenceInterface {
 
-    private boolean selected;
-    private int index;
+    private BufferedImage tileSetImage;
+    private int selected_index;
+    private List<BufferedImage> tileImages;
 
-    public TileSetCanvasView(Canvas canvas) {
-        super(canvas);
+    public TileSetCanvasView(Canvas canvas, File file,
+                             int tile_width,
+                             int tile_height) {
+        super(canvas, file);
+        this.setPixelDimension(tile_width, tile_height);
+        try {
+            initialize();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void initialize() throws IOException {
+        if (tileSetImage != null) {
+            tileSetImage.flush();
+        }
+        if (tileImages != null) {
+            tileImages.forEach(Image::flush);
+            tileImages.clear();
+        }else{
+            tileImages = new ArrayList<>();
+        }
+        clear();
+        tileSetImage = ImageIO.read(file);
+        canvas.setHeight(tileSetImage.getHeight());
+        canvas.setWidth(tileSetImage.getWidth());
+        tileImages.addAll(PixelParser.parse(tileSetImage, tile_width, tile_height));
+        canvas.getGraphicsContext2D().setFill(Paint.valueOf("000000"));
+        canvas.getGraphicsContext2D().fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        PixelParser.adjust(canvas, tileImages, tile_width, tile_height);
+    }
+
+    @Override
+    public void setFile(File file) {
+        super.setFile(file);
+        try {
+            initialize();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -24,8 +72,7 @@ public class TileSetCanvasView extends BaseCanvasView implements CanvasHandlerRe
             int index_col = (int) (spx / tile_width);
             int index_row = (int) (spy / tile_height);
             int index = (index_row * columns) + index_col;
-            this.index = index;
-            this.selected = true;
+            this.selected_index = index;
             System.out.println(index);
             mode = MODE_SELECTED;
             System.out.println("SELECTED");
@@ -48,21 +95,20 @@ public class TileSetCanvasView extends BaseCanvasView implements CanvasHandlerRe
         }
     }
 
-
     @Override
     public TileSetCanvasView getReference() {
         return this;
     }
 
-    public void draw(WritableImage toFXImage) {
-        canvas.getGraphicsContext2D().drawImage(toFXImage, last_x, last_y);
-    }
-
     public int getSelectedIndex() {
-        return index;
+        return selected_index;
     }
 
-    public boolean isSelected() {
-        return selected;
+    public BufferedImage getImage(int index) {
+        return tileImages.get(index);
+    }
+
+    public BufferedImage getSubimage(int x, int y, int width, int height) {
+        return tileSetImage.getSubimage(x, y, width, height);
     }
 }

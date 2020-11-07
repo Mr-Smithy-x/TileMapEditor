@@ -14,9 +14,26 @@ public class Tile {
         this.pixel_h = pixel_h;
     }
 
+
+    public int getPixelH() {
+        return pixel_h;
+    }
+
+    public int getPixelW() {
+        return pixel_w;
+    }
+
+    public int getPositionX() {
+        return position_x;
+    }
+
+    public int getPositionY() {
+        return position_y;
+    }
+
     public static Tile create(long address) {
-        long spos_x = (address >> (12 * 3)) & 0xfff;
-        long spos_y = (address >> (12 * 2)) & 0xfff;
+        long spos_x = (address >> 36) & 0xfff;
+        long spos_y = (address >> 24) & 0xfff;
         long stile_w = (address >> 12) & 0xfff;
         long stile_h = (address) & 0xfff;
         return new Tile((int) spos_x, (int) spos_y, (int) stile_w, (int) stile_h);

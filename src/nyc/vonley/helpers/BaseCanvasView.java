@@ -2,7 +2,11 @@ package nyc.vonley.helpers;
 
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
+
+import java.io.File;
+import java.util.Map;
 
 public class BaseCanvasView implements EventHandler<MouseEvent> {
 
@@ -15,18 +19,24 @@ public class BaseCanvasView implements EventHandler<MouseEvent> {
     protected int mode = MODE_DEFAULT;
 
     protected Canvas canvas;
+    protected File file;
     protected double last_y;
     protected double last_x;
-    public int tile_width;
-    public int tile_height;
+    protected int tile_width;
+    protected int tile_height;
 
+
+    public void draw(WritableImage toFXImage) {
+        canvas.getGraphicsContext2D().drawImage(toFXImage, last_x, last_y);
+    }
 
     public void clear() {
         canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
 
-    public BaseCanvasView(Canvas canvas) {
+    public BaseCanvasView(Canvas canvas, File file) {
         this.canvas = canvas;
+        this.file = file;
         this.canvas.setOnMouseClicked(this);
         this.canvas.setOnMouseDragEntered(this);
         this.canvas.setOnMouseDragReleased(this);
@@ -37,12 +47,19 @@ public class BaseCanvasView implements EventHandler<MouseEvent> {
         this.canvas.setOnMouseExited(this);
     }
 
+    public void setFile(File file) {
+        this.file = file;
+    }
 
+    public File getFile() {
+        return file;
+    }
 
     @Override
     public void handle(MouseEvent event) {
 
     }
+
 
     public void setPixelDimension(int tile_width, int tile_height) {
         this.tile_width = tile_width;
