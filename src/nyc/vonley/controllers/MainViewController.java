@@ -2,6 +2,7 @@ package nyc.vonley.controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.reflect.TypeToken;
 import nyc.vonley.contracts.CanvasImageReference;
 import nyc.vonley.helpers.TileMapCanvasView;
@@ -140,18 +141,27 @@ public class MainViewController implements PixelDialogController.PixelDialogHand
         }
         br.close();
 
-        Map<String, Object> token = new Gson().fromJson(sb.toString(), new TypeToken<Map<String, Object>>() {
+        Map<String, Object> data = new Gson().fromJson(sb.toString(), new TypeToken<Map<String, Object>>() {
         }.getType());
+        String file = (String) data.get("image");
+        int tile_width = ((Double) data.get("tile_width")).intValue();
+        int tile_height = ((Double) data.get("tile_height")).intValue();
+        LinkedTreeMap<String, String> tiles = (LinkedTreeMap<String, String>)data.get("tile");
+        String imageFile = String.format("%s/assets/sets/%s", System.getProperty("user.dir"), file);
+        File image = new File(imageFile);
+        tilemap = ImageIO.read(image);
+        submit(tile_width, tile_height);
+        tileMapHandler.setTiles(tiles);
 
-        System.out.println(token);
     }
 
     @Override
     public void submit(int width, int height) {
         this.tile_width = width;
         this.tile_height = height;
-        System.out.printf("%sx%s", width, height);
-        stage.close();
+        if(stage != null) {
+            stage.close();
+        }
         tile_canvas.setHeight(tilemap.getHeight());
         tile_canvas.setWidth(tilemap.getWidth());
         if (tileImages != null) {
@@ -178,5 +188,11 @@ public class MainViewController implements PixelDialogController.PixelDialogHand
     @Override
     public BufferedImage getImage(int index) {
         return tileImages.get(index);
+    }
+
+    @Override
+    public BufferedImage getSubImage(int x, int y, int width, int height) {
+        System.out.printf("X: %s, Y: %s, WIDTH: %s, HEIGHT: %s\n", x, y, width, height);
+        return tilemap.getSubimage(x, y, width, height);
     }
 }

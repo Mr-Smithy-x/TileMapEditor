@@ -4,6 +4,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.input.MouseEvent;
 import nyc.vonley.contracts.CanvasHandlerReferenceInterface;
 
+import java.util.Map;
+
 public class TileSetCanvasView extends BaseCanvasView implements CanvasHandlerReferenceInterface {
 
     private int selected_index;
@@ -54,4 +56,8 @@ public class TileSetCanvasView extends BaseCanvasView implements CanvasHandlerRe
         return selected_index;
     }
 
+    @Override
+    public void load(Map<String, Object> load) {
+        super.load(load);
+    }
 }

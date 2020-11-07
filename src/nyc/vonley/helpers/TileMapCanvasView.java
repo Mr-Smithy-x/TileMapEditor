@@ -11,6 +11,7 @@ import nyc.vonley.models.Tile;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
 
 public class TileMapCanvasView extends BaseCanvasView {
 
@@ -73,4 +74,34 @@ public class TileMapCanvasView extends BaseCanvasView {
         this.canvasHandler = tileSetHandler;
     }
 
+    @Override
+    public void load(Map<String, Object> load) {
+        super.load(load);
+    }
+
+    public void setTiles(Map<String, String> tiles) {
+        clear();
+        if(tiles == null) {
+            this.tiles = new HashMap<>();
+        }else {
+            this.tiles.clear();
+        }
+        tiles.forEach((key, value) -> {
+            long keyLong = Long.parseLong(key);
+            Point position = Point.fromLong(keyLong);
+            long valueLong = Long.parseLong(value);
+            System.out.println(valueLong);
+            Tile tile = Tile.create(valueLong);
+            this.tiles.put(keyLong, valueLong);
+            BufferedImage subImage = imageReference.getSubImage(
+                    Math.abs(tile.getPositionX()),
+                    Math.abs(tile.getPositionY()),
+                    tile_width,
+                    tile_height);
+            canvas.getGraphicsContext2D().drawImage(
+                    SwingFXUtils.toFXImage(subImage, null),
+                    position.getX(),
+                    position.getY());
+        });
+    }
 }

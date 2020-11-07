@@ -5,6 +5,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 
+import java.util.Map;
+
 public class BaseCanvasView implements EventHandler<MouseEvent> {
 
     public static final int MODE_DEFAULT = 0;
@@ -47,9 +49,14 @@ public class BaseCanvasView implements EventHandler<MouseEvent> {
 
     }
 
+
     public void setPixelDimension(int tile_width, int tile_height) {
         this.tile_width = tile_width;
         this.tile_height = tile_height;
+    }
+
+    public void load(Map<String, Object> load){
+
     }
 
 
