@@ -2,12 +2,6 @@ package nyc.vonley.controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.internal.LinkedTreeMap;
-import com.google.gson.reflect.TypeToken;
-import nyc.vonley.contracts.CanvasImageReference;
-import nyc.vonley.helpers.TileMapCanvasView;
-import nyc.vonley.helpers.TileSetCanvasView;
-import nyc.vonley.utils.PixelParser;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -19,14 +13,17 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.paint.Paint;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import nyc.vonley.contracts.CanvasImageReference;
+import nyc.vonley.helpers.TileMapCanvasView;
+import nyc.vonley.helpers.TileSetCanvasView;
+import nyc.vonley.models.TileSet;
+import nyc.vonley.utils.PixelParser;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class MainViewController implements PixelDialogController.PixelDialogHandler, CanvasImageReference {
 
@@ -119,12 +116,12 @@ public class MainViewController implements PixelDialogController.PixelDialogHand
     };
 
     protected String saveJson() {
-        Map<String, Object> data = new HashMap<>();
-        data.put("image", imageFile.getName());
-        data.put("tile_width", this.tile_width);
-        data.put("tile_height", this.tile_height);
-        data.put("tile", tileMapHandler.getTiles());
-        return new GsonBuilder().setPrettyPrinting().create().toJson(data);
+        TileSet tileSet = new TileSet();
+        tileSet.setMapImage(imageFile.getName());
+        tileSet.setTileWidth(tile_width);
+        tileSet.setTileHeight(tile_height);
+        tileSet.setTiles(tileMapHandler.getTiles());
+        return new GsonBuilder().setPrettyPrinting().create().toJson(tileSet);
     }
 
     @Override
@@ -141,18 +138,14 @@ public class MainViewController implements PixelDialogController.PixelDialogHand
         }
         br.close();
 
-        Map<String, Object> data = new Gson().fromJson(sb.toString(), new TypeToken<Map<String, Object>>() {
-        }.getType());
-        String file = (String) data.get("image");
-        int tile_width = ((Double) data.get("tile_width")).intValue();
-        int tile_height = ((Double) data.get("tile_height")).intValue();
-        LinkedTreeMap<String, String> tiles = (LinkedTreeMap<String, String>)data.get("tile");
-        String imageFile = String.format("%s/assets/sets/%s", System.getProperty("user.dir"), file);
-        File image = new File(imageFile);
-        tilemap = ImageIO.read(image);
+        TileSet tileSet = new Gson().fromJson(sb.toString(), TileSet.class);
+        int tile_width = tileSet.getTileWidth();
+        int tile_height = tileSet.getTileHeight();
+        String imageFileString = String.format("%s/assets/sets/%s", System.getProperty("user.dir"), tileSet.getMapImage());
+        imageFile = new File(imageFileString);
+        tilemap = ImageIO.read(imageFile);
         submit(tile_width, tile_height);
-        tileMapHandler.setTiles(tiles);
-
+        tileMapHandler.setTiles(tileSet);
     }
 
     @Override

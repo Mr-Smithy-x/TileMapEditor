@@ -7,11 +7,11 @@ import nyc.vonley.contracts.CanvasHandlerReferenceInterface;
 import nyc.vonley.contracts.CanvasImageReference;
 import nyc.vonley.models.Point;
 import nyc.vonley.models.Tile;
+import nyc.vonley.models.TileSet;
 
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.BiConsumer;
 
 public class TileMapCanvasView extends BaseCanvasView {
 
@@ -19,7 +19,7 @@ public class TileMapCanvasView extends BaseCanvasView {
     private CanvasImageReference imageReference;
 
     //<Position, Value>
-    private Map<Long, Long> tiles = new HashMap<>();
+    private TileSet.LongMap tiles = new TileSet.LongMap();
 
     public TileMapCanvasView(Canvas canvas) {
         super(canvas);
@@ -38,7 +38,9 @@ public class TileMapCanvasView extends BaseCanvasView {
                 int real_column = (int) (spx - spx_remainder);
                 int real_row = (int) (spy - spy_remainder);
                 long pointKey = Point.toLong(real_column, real_row);
-                long valueKey = Tile.toLong(image.getTileGridXOffset(), image.getTileGridYOffset(), image.getWidth(), image.getHeight());
+                int tileGridXOffset = image.getTileGridXOffset();
+                int tileGridYOffset = image.getTileGridYOffset();
+                long valueKey = Tile.toLong(Math.abs(tileGridXOffset), Math.abs(tileGridYOffset), image.getWidth(), image.getHeight());
                 tiles.remove(pointKey);
                 tiles.put(pointKey, valueKey);
                 canvas.getGraphicsContext2D().drawImage(SwingFXUtils.toFXImage(image, null), real_column, real_row);
@@ -62,7 +64,7 @@ public class TileMapCanvasView extends BaseCanvasView {
         }
     }
 
-    public Map<Long, Long> getTiles() {
+    public TileSet.LongMap getTiles() {
         return tiles;
     }
 
@@ -79,20 +81,18 @@ public class TileMapCanvasView extends BaseCanvasView {
         super.load(load);
     }
 
-    public void setTiles(Map<String, String> tiles) {
+    public void setTiles(TileSet tileSet) {
         clear();
-        if(tiles == null) {
-            this.tiles = new HashMap<>();
-        }else {
+        if (tileSet == null) {
+            this.tiles = new TileSet.LongMap();
+        } else {
             this.tiles.clear();
         }
+        this.tiles.putAll(tileSet.getTiles());
+
         tiles.forEach((key, value) -> {
-            long keyLong = Long.parseLong(key);
-            Point position = Point.fromLong(keyLong);
-            long valueLong = Long.parseLong(value);
-            System.out.println(valueLong);
-            Tile tile = Tile.create(valueLong);
-            this.tiles.put(keyLong, valueLong);
+            Point position = Point.fromLong(key);
+            Tile tile = Tile.create(value);
             BufferedImage subImage = imageReference.getSubImage(
                     Math.abs(tile.getPositionX()),
                     Math.abs(tile.getPositionY()),
