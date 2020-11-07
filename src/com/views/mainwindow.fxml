@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.MainViewController">
+    <children>
+        <MenuBar>
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false"  fx:id="newMenuItem" text="New" />
+                        <MenuItem mnemonicParsing="false" fx:id="openMenuItem" text="Open" />
+                        <MenuItem mnemonicParsing="false" fx:id="closeMenuItem" text="Close" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" fx:id="retileMenuItem" text="ReTile" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <HBox layoutY="30.0" prefHeight="600.0" prefWidth="800.0">
+            <children>
+                <Canvas fx:id="map_canvas" height="600.0" width="600.0">
+
+                </Canvas>
+                <Canvas fx:id="tile_canvas" height="600.0" width="200.0">
+
+                </Canvas>
+            </children>
+        </HBox>
+    </children>
+</VBox>

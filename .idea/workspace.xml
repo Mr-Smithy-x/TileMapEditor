@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/TileMapEditor.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/contracts/CanvasHandlerReferenceInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/contracts/CanvasImageReference.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/controllers/PixelDialogController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/helpers/BaseCanvasView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/helpers/TileMapCanvasView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/helpers/TileSetCanvasView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/models/Point.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/models/Tile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/models/TileSet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/utils/PixelParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/views/pixeldialog.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tutorials/Scrollbars/lazy_scrollbar.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tutorials/Scrollbars/scrollbars.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tutorials/Scrollbars/themed_scrollbar.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tutorials/Tray_Notifications_MenuBar/app_menubar.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tutorials/Tray_Notifications_MenuBar/notifier.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tutorials/Tray_Notifications_MenuBar/tray.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tutorials/Tray_Notifications_MenuBar/window_menubar.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tutorials/Window_API/center_the_window.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tutorials/Window_API/current_window.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tutorials/Window_API/focus_the_window.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tutorials/Window_API/window_attr.gif" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DebuggerManager">
+    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true" converted="true">
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </breakpoint_any>
+    <ui_properties converted="true" />
+    <breakpoint_rules converted="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1jtWBmzJ3TpTnSMhY9WI6v3xJsw" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="OverrideImplement.combined" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="dynamic.classpath" value="false" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="recentsLimit" value="5" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveInnerDialog.RECENTS_KEY">
+      <recent name="sample" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.helpers" />
+      <recent name="sample.handlers" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/com/views" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
+      <Host>localhost</Host>
+      <Port>5050</Port>
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file enabled="true" id="idea.log" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.Main" />
+      <module name="TileMapEditor" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.contracts.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file enabled="true" id="idea.log" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
+      <created>1359379246138</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1359379246138</updated>
+      <workItem from="1359379250712" duration="1302000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1302000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
+    <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="0" y="175" key="#Project_Structure" timestamp="1604626397123">
+      <screen x="0" y="23" width="1680" height="989" />
+    </state>
+    <state x="0" y="175" key="#Project_Structure/0.23.1680.989@0.23.1680.989" timestamp="1604626397123" />
+    <state x="989" y="212" key="#com.intellij.ide.util.MemberChooser" timestamp="1604722707845">
+      <screen x="0" y="23" width="1680" height="989" />
+    </state>
+    <state x="989" y="212" key="#com.intellij.ide.util.MemberChooser/0.23.1680.989@0.23.1680.989" timestamp="1604722707845" />
+    <state x="680" y="427" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1604698182549">
+      <screen x="0" y="23" width="1680" height="989" />
+    </state>
+    <state x="680" y="427" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.23.1680.989@0.23.1680.989" timestamp="1604698182549" />
+    <state x="652" y="345" key="#com.intellij.refactoring.move.moveInner.MoveInnerDialog" timestamp="1604698183944">
+      <screen x="0" y="23" width="1680" height="989" />
+    </state>
+    <state x="652" y="345" key="#com.intellij.refactoring.move.moveInner.MoveInnerDialog/0.23.1680.989@0.23.1680.989" timestamp="1604698183944" />
+    <state x="605" y="227" key="#com.intellij.refactoring.move.moveMembers.MoveMembersDialog" timestamp="1604698146073">
+      <screen x="0" y="23" width="1680" height="989" />
+    </state>
+    <state x="605" y="227" key="#com.intellij.refactoring.move.moveMembers.MoveMembersDialog/0.23.1680.989@0.23.1680.989" timestamp="1604698146073" />
+    <state width="1339" height="221" key="GridCell.Tab.0.bottom" timestamp="1604724965278">
+      <screen x="0" y="23" width="1680" height="989" />
+    </state>
+    <state width="1339" height="221" key="GridCell.Tab.0.bottom/0.23.1680.989@0.23.1680.989" timestamp="1604724965278" />
+    <state width="1339" height="221" key="GridCell.Tab.0.center" timestamp="1604724965277">
+      <screen x="0" y="23" width="1680" height="989" />
+    </state>
+    <state width="1339" height="221" key="GridCell.Tab.0.center/0.23.1680.989@0.23.1680.989" timestamp="1604724965277" />
+    <state width="1339" height="221" key="GridCell.Tab.0.left" timestamp="1604724965277">
+      <screen x="0" y="23" width="1680" height="989" />
+    </state>
+    <state width="1339" height="221" key="GridCell.Tab.0.left/0.23.1680.989@0.23.1680.989" timestamp="1604724965277" />
+    <state width="1339" height="221" key="GridCell.Tab.0.right" timestamp="1604724965278">
+      <screen x="0" y="23" width="1680" height="989" />
+    </state>
+    <state width="1339" height="221" key="GridCell.Tab.0.right/0.23.1680.989@0.23.1680.989" timestamp="1604724965278" />
+    <state x="374" y="124" key="SettingsEditor" timestamp="1604724944930">
+      <screen x="0" y="23" width="1680" height="989" />
+    </state>
+    <state x="374" y="124" key="SettingsEditor/0.23.1680.989@0.23.1680.989" timestamp="1604724944930" />
+    <state x="583" y="438" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1604724877263">
+      <screen x="0" y="23" width="1680" height="989" />
+    </state>
+    <state x="583" y="438" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.23.1680.989@0.23.1680.989" timestamp="1604724877263" />
+    <state x="558" y="232" width="670" height="676" key="search.everywhere.popup" timestamp="1604722318873">
+      <screen x="0" y="23" width="1680" height="989" />
+    </state>
+    <state x="558" y="232" width="670" height="676" key="search.everywhere.popup/0.23.1680.989@0.23.1680.989" timestamp="1604722318873" />
+  </component>
+</project>
