@@ -1,36 +1,15 @@
 package nyc.vonley.models;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.sun.istack.internal.NotNull;
 
-/**
- * {
- * "image": "bg_kit_3.png",
- * "tile_width": 32,
- * "tile_height": 32,
- * "tile": {
- * "0": "131104",
- * "32": "-536739808",
- * "64": "-3221094368",
- * "96": "-3757965280",
- * "128": "-4294836192",
- * "131072": "-2199023124448",
- * "131104": "-2199559995360",
- * "131136": "-2202244349920",
- * "131168": "-2202781220832",
- * "131200": "-2203318091744",
- * "262208": "-4401267605472",
- * "262240": "-4401804476384",
- * "262272": "-4402341347296",
- * "393344": "-6601364602848",
- * "393312": "-6600827731936",
- * "393280": "-6600290861024"
- * }
- * }
- */
-public class TileSet {
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Spliterator;
+import java.util.function.Consumer;
+
+public class TileSet implements Iterable<Long> {
     String map_image;
-    LongMap tiles;
+    LongMap tiles = new LongMap();
     int tile_width;
     int tile_height;
 
@@ -70,8 +49,35 @@ public class TileSet {
         tiles.remove(key);
     }
 
-    public void setTiles(LongMap tiles) {
+    public void setTiles(@NotNull LongMap tiles) {
         this.tiles = tiles;
+    }
+
+    public void clear() {
+        this.tiles.clear();
+    }
+
+    public void putAll(@NotNull LongMap tiles) {
+        this.tiles.putAll(tiles);
+    }
+
+    @Override
+    public Iterator<Long> iterator() {
+        return this.tiles.keySet().iterator();
+    }
+
+    @Override
+    public void forEach(Consumer<? super Long> action) {
+        this.tiles.keySet().forEach(action);
+    }
+
+    @Override
+    public Spliterator<Long> spliterator() {
+        return this.tiles.keySet().spliterator();
+    }
+
+    public long get(Long key) {
+        return this.tiles.get(key);
     }
 
     public static class LongMap extends HashMap<Long, Long> {

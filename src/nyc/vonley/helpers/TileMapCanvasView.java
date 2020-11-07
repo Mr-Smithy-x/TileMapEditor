@@ -10,19 +10,42 @@ import nyc.vonley.models.Tile;
 import nyc.vonley.models.TileSet;
 
 import java.awt.image.BufferedImage;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.File;
 
 public class TileMapCanvasView extends BaseCanvasView {
 
     private CanvasHandlerReferenceInterface canvasHandler;
     private CanvasImageReference imageReference;
+    private TileSet tileSet;
 
-    //<Position, Value>
-    private TileSet.LongMap tiles = new TileSet.LongMap();
+    public TileMapCanvasView(Canvas canvas, TileSet tileSet) {
+        super(canvas, new File(String.format("%s/sets/%s", System.getProperty("user.dir"), tileSet.getMapImage())));
+        this.tileSet = tileSet;
+        setPixelDimension(tileSet.getTileWidth(), tileSet.getTileHeight());
+    }
 
-    public TileMapCanvasView(Canvas canvas) {
-        super(canvas);
+    public TileMapCanvasView(Canvas canvas, File file, int tile_width, int tile_height) {
+        super(canvas, file);
+        tileSet = new TileSet();
+        tileSet.setMapImage(file.getName());
+        tileSet.setTileWidth(tile_width);
+        tileSet.setTileHeight(tile_height);
+        setPixelDimension(tile_width, tile_height);
+    }
+
+    @Override
+    public void setPixelDimension(int tile_width, int tile_height) {
+        super.setPixelDimension(tile_width, tile_height);
+        tileSet.setTileHeight(tile_height);
+        tileSet.setTileWidth(tile_width);
+    }
+
+    @Override
+    public void setFile(File file) {
+        super.setFile(file);
+        tileSet.setMapImage(file.getName());
+        tileSet.clear();
+        clear();
     }
 
     @Override
@@ -41,8 +64,8 @@ public class TileMapCanvasView extends BaseCanvasView {
                 int tileGridXOffset = image.getTileGridXOffset();
                 int tileGridYOffset = image.getTileGridYOffset();
                 long valueKey = Tile.toLong(Math.abs(tileGridXOffset), Math.abs(tileGridYOffset), image.getWidth(), image.getHeight());
-                tiles.remove(pointKey);
-                tiles.put(pointKey, valueKey);
+                tileSet.remove(pointKey);
+                tileSet.put(pointKey, valueKey);
                 canvas.getGraphicsContext2D().drawImage(SwingFXUtils.toFXImage(image, null), real_column, real_row);
             }
         }
@@ -64,8 +87,8 @@ public class TileMapCanvasView extends BaseCanvasView {
         }
     }
 
-    public TileSet.LongMap getTiles() {
-        return tiles;
+    public TileSet getTiles() {
+        return tileSet;
     }
 
     public void setImageReference(CanvasImageReference imageReference) {
@@ -76,32 +99,27 @@ public class TileMapCanvasView extends BaseCanvasView {
         this.canvasHandler = tileSetHandler;
     }
 
-    @Override
-    public void load(Map<String, Object> load) {
-        super.load(load);
-    }
 
     public void setTiles(TileSet tileSet) {
         clear();
-        if (tileSet == null) {
-            this.tiles = new TileSet.LongMap();
-        } else {
-            this.tiles.clear();
+        if (this.tileSet != null) {
+            this.tileSet.clear();
         }
-        this.tiles.putAll(tileSet.getTiles());
-
-        tiles.forEach((key, value) -> {
+        this.tileSet = tileSet;
+        for (Long key: tileSet) {
             Point position = Point.fromLong(key);
-            Tile tile = Tile.create(value);
+            Tile tile = Tile.create(tileSet.get(key));
             BufferedImage subImage = imageReference.getSubImage(
                     Math.abs(tile.getPositionX()),
                     Math.abs(tile.getPositionY()),
                     tile_width,
-                    tile_height);
+                    tile_height
+            );
             canvas.getGraphicsContext2D().drawImage(
                     SwingFXUtils.toFXImage(subImage, null),
                     position.getX(),
-                    position.getY());
-        });
+                    position.getY()
+            );
+        }
     }
 }

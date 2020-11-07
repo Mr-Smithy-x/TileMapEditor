@@ -10,20 +10,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.MenuItem;
-import javafx.scene.paint.Paint;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import nyc.vonley.contracts.CanvasImageReference;
 import nyc.vonley.helpers.TileMapCanvasView;
 import nyc.vonley.helpers.TileSetCanvasView;
 import nyc.vonley.models.TileSet;
-import nyc.vonley.utils.PixelParser;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.util.List;
 
 public class MainViewController implements PixelDialogController.PixelDialogHandler, CanvasImageReference {
 
@@ -33,14 +28,11 @@ public class MainViewController implements PixelDialogController.PixelDialogHand
             images = new FileChooser.ExtensionFilter("Image", "*.jpg", "*.png"),
             formats = new FileChooser.ExtensionFilter("Formats", "*.json");
     private FileChooser fileChooser = new FileChooser();
-    private File imageFile, jsonFile;
-    private BufferedImage tilemap;
-    private List<BufferedImage> tileImages;
+    private File fileImage, fileJson;
     private Stage stage;
     private Scene dialogScene;
     private TileSetCanvasView tileSetHandler;
     private TileMapCanvasView tileMapHandler;
-    private int tile_width, tile_height;
 
     @FXML
     public void initialize() {
@@ -69,12 +61,11 @@ public class MainViewController implements PixelDialogController.PixelDialogHand
     private EventHandler<ActionEvent> onMenuItemClicked = event -> {
         MenuItem source = (MenuItem) event.getSource();
         if (source == newMenuItem) {
+            fileJson = null;
             fileChooser.setSelectedExtensionFilter(images);
-            File file = fileChooser.showOpenDialog(null);
-            if (file != null) {
-                this.imageFile = file;
+            fileImage = fileChooser.showOpenDialog(null);
+            if (fileImage != null) {
                 try {
-                    tilemap = ImageIO.read(file);
                     showDialog();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -93,7 +84,7 @@ public class MainViewController implements PixelDialogController.PixelDialogHand
         } else if (source == closeMenuItem) {
 
         } else if (source == retileMenuItem) {
-            if (imageFile != null) {
+            if (fileImage != null) {
                 try {
                     showDialog();
                 } catch (IOException e) {
@@ -116,12 +107,7 @@ public class MainViewController implements PixelDialogController.PixelDialogHand
     };
 
     protected String saveJson() {
-        TileSet tileSet = new TileSet();
-        tileSet.setMapImage(imageFile.getName());
-        tileSet.setTileWidth(tile_width);
-        tileSet.setTileHeight(tile_height);
-        tileSet.setTiles(tileMapHandler.getTiles());
-        return new GsonBuilder().setPrettyPrinting().create().toJson(tileSet);
+        return new GsonBuilder().setPrettyPrinting().create().toJson(tileMapHandler.getTiles());
     }
 
     @Override
@@ -131,61 +117,59 @@ public class MainViewController implements PixelDialogController.PixelDialogHand
 
     public void loadTemplate(File json) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(json));
-        String stub = null;
+        String stub;
         StringBuilder sb = new StringBuilder();
         while ((stub = br.readLine()) != null) {
             sb.append(stub);
         }
         br.close();
-
         TileSet tileSet = new Gson().fromJson(sb.toString(), TileSet.class);
         int tile_width = tileSet.getTileWidth();
         int tile_height = tileSet.getTileHeight();
         String imageFileString = String.format("%s/assets/sets/%s", System.getProperty("user.dir"), tileSet.getMapImage());
-        imageFile = new File(imageFileString);
-        tilemap = ImageIO.read(imageFile);
-        submit(tile_width, tile_height);
+        fileImage = new File(imageFileString);
+        fileJson = json;
+        initialize_sets(tile_width, tile_height);
         tileMapHandler.setTiles(tileSet);
+    }
+
+
+    public void initialize_sets(int width, int height){
+        if (tileSetHandler == null) {
+            tileSetHandler = new TileSetCanvasView(tile_canvas, fileImage, width, height);
+        }else{
+            tileSetHandler.clear();
+            tileSetHandler.setPixelDimension(width, height);
+            tileSetHandler.setFile(fileImage);
+        }
+        if (tileMapHandler == null) {
+            tileMapHandler = new TileMapCanvasView(map_canvas, fileImage, width, height);
+            tileMapHandler.setCanvasHandlerReference(tileSetHandler);
+            tileMapHandler.setImageReference(this);
+        }else{
+            tileMapHandler.clear();
+            tileMapHandler.setPixelDimension(width, height);
+            tileMapHandler.setFile(fileImage);
+        }
     }
 
     @Override
     public void submit(int width, int height) {
-        this.tile_width = width;
-        this.tile_height = height;
-        if(stage != null) {
+        initialize_sets(width, height);
+        if (stage != null) {
             stage.close();
         }
-        tile_canvas.setHeight(tilemap.getHeight());
-        tile_canvas.setWidth(tilemap.getWidth());
-        if (tileImages != null) {
-            tileImages.forEach(Image::flush);
-            tileImages.clear();
-        }
-        tileImages = PixelParser.parse(tilemap, width, height);
-        Paint p = Paint.valueOf("000000");
-        tile_canvas.getGraphicsContext2D().setFill(p);
-        tile_canvas.getGraphicsContext2D().fillRect(0, 0, tile_canvas.getWidth(), tile_canvas.getHeight());
-        PixelParser.adjust(tile_canvas, tileImages, width, height);
-        if (tileSetHandler == null) {
-            tileSetHandler = new TileSetCanvasView(tile_canvas);
-        }
-        if (tileMapHandler == null) {
-            tileMapHandler = new TileMapCanvasView(map_canvas);
-            tileMapHandler.setCanvasHandlerReference(tileSetHandler);
-            tileMapHandler.setImageReference(this);
-        }
-        tileMapHandler.setPixelDimension(width, height);
-        tileSetHandler.setPixelDimension(width, height);
+
     }
 
     @Override
     public BufferedImage getImage(int index) {
-        return tileImages.get(index);
+        return tileSetHandler.getImage(index);
     }
 
     @Override
     public BufferedImage getSubImage(int x, int y, int width, int height) {
         System.out.printf("X: %s, Y: %s, WIDTH: %s, HEIGHT: %s\n", x, y, width, height);
-        return tilemap.getSubimage(x, y, width, height);
+        return tileSetHandler.getSubimage(x, y, width, height);
     }
 }

@@ -5,6 +5,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 
+import java.io.File;
 import java.util.Map;
 
 public class BaseCanvasView implements EventHandler<MouseEvent> {
@@ -18,6 +19,7 @@ public class BaseCanvasView implements EventHandler<MouseEvent> {
     protected int mode = MODE_DEFAULT;
 
     protected Canvas canvas;
+    protected File file;
     protected double last_y;
     protected double last_x;
     protected int tile_width;
@@ -32,8 +34,9 @@ public class BaseCanvasView implements EventHandler<MouseEvent> {
         canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
 
-    public BaseCanvasView(Canvas canvas) {
+    public BaseCanvasView(Canvas canvas, File file) {
         this.canvas = canvas;
+        this.file = file;
         this.canvas.setOnMouseClicked(this);
         this.canvas.setOnMouseDragEntered(this);
         this.canvas.setOnMouseDragReleased(this);
@@ -42,6 +45,14 @@ public class BaseCanvasView implements EventHandler<MouseEvent> {
         this.canvas.setOnMouseDragExited(this);
         this.canvas.setOnMouseEntered(this);
         this.canvas.setOnMouseExited(this);
+    }
+
+    public void setFile(File file) {
+        this.file = file;
+    }
+
+    public File getFile() {
+        return file;
     }
 
     @Override
@@ -53,10 +64,6 @@ public class BaseCanvasView implements EventHandler<MouseEvent> {
     public void setPixelDimension(int tile_width, int tile_height) {
         this.tile_width = tile_width;
         this.tile_height = tile_height;
-    }
-
-    public void load(Map<String, Object> load){
-
     }
 
 
