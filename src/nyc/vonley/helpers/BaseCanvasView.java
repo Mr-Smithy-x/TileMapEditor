@@ -1,7 +1,9 @@
 package nyc.vonley.helpers;
 
 import javafx.event.EventHandler;
+import javafx.geometry.Orientation;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -17,7 +19,13 @@ public class BaseCanvasView implements EventHandler<MouseEvent> {
     public static final int MODE_EXITED = 3;
     public static final int MODE_RELEASED = 4;
 
-
+    public ScrollBar createScrollBar(Orientation orientation, double fullSize, double canvasSize) {
+        ScrollBar sb = new ScrollBar();
+        sb.setOrientation(orientation);
+        sb.setMax(fullSize - canvasSize);
+        sb.setVisibleAmount(canvasSize);
+        return sb;
+    }
 
     public static final int UP   = KeyCode.UP.ordinal();
     public static final int DN   = KeyCode.DOWN.ordinal();

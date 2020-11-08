@@ -67,47 +67,36 @@ public class TileMapCanvasView extends BaseCanvasView implements EventHandler<Mo
             int real_column = (int) (spx - spx_remainder);
             int real_row = (int) (spy - spy_remainder);
             long pointKey = Point.toLong(real_column, real_row);
+            long tileValue = 0;
+            BufferedImage image = null;
             if (pressing[SPACE] && tileSet.has(pointKey)) {
-                long value = tileSet.get(pointKey);
-                value = Tile.setCollision(value, true);
-                tileSet.remove(pointKey);
-                tileSet.put(pointKey, value);
-                BufferedImage image = imageReference.getSubImageAtAddress(value);
-                canvas.getGraphicsContext2D().drawImage(SwingFXUtils.toFXImage(image, null), real_column, real_row);
-                if (Tile.isCollisionTile(value)) {
-                    System.out.println("COLLIDE SET ENABLED");
-                    Color rgb = Color.rgb(255, 0, 0, 0.2);
-                    canvas.getGraphicsContext2D().setFill(rgb);
-                    canvas.getGraphicsContext2D().fillRect(real_column, real_row, tile_width, tile_height);
-                }
-                if (Tile.isObjectTile(value)) {
-                    System.out.println("OBJECT SET ENABLED");
-                    Color rgb = Color.rgb(0, 255, 0, 0.2);
-                    canvas.getGraphicsContext2D().setFill(rgb);
-                    canvas.getGraphicsContext2D().fillOval(real_column, real_row, tile_width, tile_height);
-                }
+                tileValue = tileSet.get(pointKey);
+                tileValue = Tile.setCollision(tileValue, true);
+                image = imageReference.getSubImageAtAddress(tileValue);
             } else {
-
-                BufferedImage image = imageReference.getImage(selectedIndex);
+                image = imageReference.getImage(selectedIndex);
                 int tileGridXOffset = image.getTileGridXOffset();
                 int tileGridYOffset = image.getTileGridYOffset();
-                long valueKey = Tile.toLong(Math.abs(tileGridXOffset), Math.abs(tileGridYOffset), image.getWidth(), image.getHeight(), collides || pressing[SPACE], isobject);
-                tileSet.remove(pointKey);
-                tileSet.put(pointKey, valueKey);
-                canvas.getGraphicsContext2D().drawImage(SwingFXUtils.toFXImage(image, null), real_column, real_row);
-
-                if (Tile.isCollisionTile(valueKey)) {
-                    System.out.println("COLLIDE SET ENABLED");
-                    Color rgb = Color.rgb(255, 0, 0, 0.2);
-                    canvas.getGraphicsContext2D().setFill(rgb);
-                    canvas.getGraphicsContext2D().fillRect(real_column, real_row, tile_width, tile_height);
-                }
-                if (Tile.isObjectTile(valueKey)) {
-                    System.out.println("OBJECT SET ENABLED");
-                    Color rgb = Color.rgb(0, 255, 0, 0.2);
-                    canvas.getGraphicsContext2D().setFill(rgb);
-                    canvas.getGraphicsContext2D().fillOval(real_column, real_row, tile_width, tile_height);
-                }
+                tileValue = Tile.toLong(
+                        Math.abs(tileGridXOffset),
+                        Math.abs(tileGridYOffset),
+                        image.getWidth(),
+                        image.getHeight(),
+                        collides || pressing[SPACE],
+                        isobject
+                );
+            }
+            tileSet.put(pointKey, tileValue);
+            canvas.getGraphicsContext2D().drawImage(SwingFXUtils.toFXImage(image, null), real_column, real_row);
+            if (Tile.isCollisionTile(tileValue)) {
+                Color rgb = Color.rgb(255, 0, 0, 0.2);
+                canvas.getGraphicsContext2D().setFill(rgb);
+                canvas.getGraphicsContext2D().fillRect(real_column, real_row, tile_width, tile_height);
+            }
+            if (Tile.isObjectTile(tileValue)) {
+                Color rgb = Color.rgb(0, 255, 0, 0.2);
+                canvas.getGraphicsContext2D().setFill(rgb);
+                canvas.getGraphicsContext2D().fillOval(real_column, real_row, tile_width, tile_height);
             }
         }
     }
@@ -166,18 +155,25 @@ public class TileMapCanvasView extends BaseCanvasView implements EventHandler<Mo
         }
         this.tileSet = tileSet;
         for (Point position : tileSet.pointIterator()) {
-            Tile tile = Tile.create(tileSet.get(position));
+            long address = tileSet.get(position);
+            Tile tile = Tile.create(address);
             BufferedImage subImage = imageReference.getSubImage(
                     Math.abs(tile.getPositionX()),
                     Math.abs(tile.getPositionY()),
                     tile_width,
                     tile_height
             );
-            canvas.getGraphicsContext2D().drawImage(
-                    SwingFXUtils.toFXImage(subImage, null),
-                    position.getX(),
-                    position.getY()
-            );
+            canvas.getGraphicsContext2D().drawImage(SwingFXUtils.toFXImage(subImage, null), position.getX(), position.getY());
+            if (Tile.isCollisionTile(address)) {
+                Color rgb = Color.rgb(255, 0, 0, 0.2);
+                canvas.getGraphicsContext2D().setFill(rgb);
+                canvas.getGraphicsContext2D().fillRect(position.getX(), position.getY(), tile_width, tile_height);
+            }
+            if (Tile.isObjectTile(address)) {
+                Color rgb = Color.rgb(0, 255, 0, 0.2);
+                canvas.getGraphicsContext2D().setFill(rgb);
+                canvas.getGraphicsContext2D().fillOval(position.getX(), position.getY(), tile_width, tile_height);
+            }
         }
     }
 

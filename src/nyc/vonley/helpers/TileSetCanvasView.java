@@ -1,5 +1,6 @@
 package nyc.vonley.helpers;
 
+import javafx.geometry.Orientation;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Paint;
