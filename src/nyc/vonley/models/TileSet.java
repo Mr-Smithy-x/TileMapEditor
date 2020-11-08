@@ -88,6 +88,10 @@ public class TileSet implements Iterable<Long> {
         return this.tiles.get(position.longValue());
     }
 
+    public boolean has(long pointKey) {
+        return this.tiles.containsKey(pointKey);
+    }
+
     public static class LongMap extends HashMap<Long, Long> {
     }
 }

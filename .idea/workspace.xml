@@ -5,14 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/sets/emerald tileset.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/sets/gs tileset.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/migration/Migration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nyc/vonley/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/nyc/vonley/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nyc/vonley/contracts/CanvasImageReference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/nyc/vonley/contracts/CanvasImageReference.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nyc/vonley/controllers/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/nyc/vonley/controllers/MainViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nyc/vonley/helpers/BaseCanvasView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/nyc/vonley/helpers/BaseCanvasView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/nyc/vonley/helpers/TileMapCanvasView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/nyc/vonley/helpers/TileMapCanvasView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nyc/vonley/models/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/nyc/vonley/models/Point.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/nyc/vonley/models/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/nyc/vonley/models/Tile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/nyc/vonley/models/TileSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/nyc/vonley/models/TileSet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/TileTestCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/TileTestCase.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,8 +114,10 @@
     <property name="recentsLimit" value="5" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/assets/sets" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/maps" />
+      <recent name="$PROJECT_DIR$/src/lib" />
+      <recent name="$PROJECT_DIR$/src/com/views" />
     </key>
     <key name="MoveInnerDialog.RECENTS_KEY">
       <recent name="sample" />
@@ -123,13 +126,11 @@
       <recent name="com.helpers" />
       <recent name="sample.handlers" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/assets/maps" />
-      <recent name="$PROJECT_DIR$/src/lib" />
-      <recent name="$PROJECT_DIR$/src/com/views" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/sets" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -152,14 +153,20 @@
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="TEST_OBJECT" value="class" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="TestNG">
       <option name="TEST_OBJECT" value="CLASS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
       <properties />
       <listeners />
       <method v="2">
@@ -172,7 +179,7 @@
     </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
       <module name="" />
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
       <option name="PROGRAM_PARAMETERS" />
       <predefined_log_file enabled="true" id="idea.log" />
       <method v="2">
@@ -200,28 +207,46 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Migration" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="migration.Migration" />
+      <module name="TileMapEditor" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="migration.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TileTestCase" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TileMapEditor" />
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.TileTestCase" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="TEST_OBJECT" value="class" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="TestNG">
       <option name="TEST_OBJECT" value="CLASS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <properties />
       <listeners />
       <method v="2">
@@ -230,13 +255,24 @@
     </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
       <module name="" />
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
       <option name="PROGRAM_PARAMETERS" />
       <predefined_log_file enabled="true" id="idea.log" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.TileTestCase" />
+      <item itemvalue="Application.Migration" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Migration" />
+        <item itemvalue="JUnit.TileTestCase" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -262,14 +298,14 @@
       <screen x="0" y="23" width="1680" height="989" />
     </state>
     <state x="0" y="175" key="#Project_Structure/0.23.1680.989@0.23.1680.989" timestamp="1604626397123" />
-    <state x="280" y="162" width="1071" height="700" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604726044195">
+    <state x="280" y="162" width="1071" height="772" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604847484647">
       <screen x="0" y="23" width="1680" height="989" />
     </state>
-    <state x="280" y="162" width="1071" height="700" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1680.989@0.23.1680.989" timestamp="1604726044195" />
-    <state x="989" y="212" key="#com.intellij.ide.util.MemberChooser" timestamp="1604782694411">
+    <state x="280" y="162" width="1071" height="772" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1680.989@0.23.1680.989" timestamp="1604847484647" />
+    <state x="989" y="212" key="#com.intellij.ide.util.MemberChooser" timestamp="1604865481820">
       <screen x="0" y="23" width="1680" height="989" />
     </state>
-    <state x="989" y="212" key="#com.intellij.ide.util.MemberChooser/0.23.1680.989@0.23.1680.989" timestamp="1604782694411" />
+    <state x="989" y="212" key="#com.intellij.ide.util.MemberChooser/0.23.1680.989@0.23.1680.989" timestamp="1604865481820" />
     <state x="680" y="427" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1604698182549">
       <screen x="0" y="23" width="1680" height="989" />
     </state>
@@ -282,22 +318,30 @@
       <screen x="0" y="23" width="1680" height="989" />
     </state>
     <state x="605" y="227" key="#com.intellij.refactoring.move.moveMembers.MoveMembersDialog/0.23.1680.989@0.23.1680.989" timestamp="1604698146073" />
-    <state width="1339" height="467" key="GridCell.Tab.0.bottom" timestamp="1604783245192">
+    <state x="164" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1604864668771">
       <screen x="0" y="23" width="1680" height="989" />
     </state>
-    <state width="1339" height="467" key="GridCell.Tab.0.bottom/0.23.1680.989@0.23.1680.989" timestamp="1604783245192" />
-    <state width="1339" height="467" key="GridCell.Tab.0.center" timestamp="1604783245191">
+    <state x="164" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1680.989@0.23.1680.989" timestamp="1604864668771" />
+    <state x="342" y="23" key="CommitChangelistDialog2" timestamp="1604851673663">
       <screen x="0" y="23" width="1680" height="989" />
     </state>
-    <state width="1339" height="467" key="GridCell.Tab.0.center/0.23.1680.989@0.23.1680.989" timestamp="1604783245191" />
-    <state width="1339" height="467" key="GridCell.Tab.0.left" timestamp="1604783245191">
+    <state x="342" y="23" key="CommitChangelistDialog2/0.23.1680.989@0.23.1680.989" timestamp="1604851673663" />
+    <state width="1339" height="330" key="GridCell.Tab.0.bottom" timestamp="1604864126377">
       <screen x="0" y="23" width="1680" height="989" />
     </state>
-    <state width="1339" height="467" key="GridCell.Tab.0.left/0.23.1680.989@0.23.1680.989" timestamp="1604783245191" />
-    <state width="1339" height="467" key="GridCell.Tab.0.right" timestamp="1604783245192">
+    <state width="1339" height="330" key="GridCell.Tab.0.bottom/0.23.1680.989@0.23.1680.989" timestamp="1604864126377" />
+    <state width="1339" height="330" key="GridCell.Tab.0.center" timestamp="1604864126376">
       <screen x="0" y="23" width="1680" height="989" />
     </state>
-    <state width="1339" height="467" key="GridCell.Tab.0.right/0.23.1680.989@0.23.1680.989" timestamp="1604783245192" />
+    <state width="1339" height="330" key="GridCell.Tab.0.center/0.23.1680.989@0.23.1680.989" timestamp="1604864126376" />
+    <state width="1339" height="330" key="GridCell.Tab.0.left" timestamp="1604864126375">
+      <screen x="0" y="23" width="1680" height="989" />
+    </state>
+    <state width="1339" height="330" key="GridCell.Tab.0.left/0.23.1680.989@0.23.1680.989" timestamp="1604864126375" />
+    <state width="1339" height="330" key="GridCell.Tab.0.right" timestamp="1604864126376">
+      <screen x="0" y="23" width="1680" height="989" />
+    </state>
+    <state width="1339" height="330" key="GridCell.Tab.0.right/0.23.1680.989@0.23.1680.989" timestamp="1604864126376" />
     <state x="374" y="124" key="SettingsEditor" timestamp="1604726137964">
       <screen x="0" y="23" width="1680" height="989" />
     </state>
@@ -306,9 +350,9 @@
       <screen x="0" y="23" width="1680" height="989" />
     </state>
     <state x="583" y="438" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.23.1680.989@0.23.1680.989" timestamp="1604724877263" />
-    <state x="558" y="232" width="670" height="676" key="search.everywhere.popup" timestamp="1604780516580">
+    <state x="558" y="232" width="670" height="676" key="search.everywhere.popup" timestamp="1604865427396">
       <screen x="0" y="23" width="1680" height="989" />
     </state>
-    <state x="558" y="232" width="670" height="676" key="search.everywhere.popup/0.23.1680.989@0.23.1680.989" timestamp="1604780516580" />
+    <state x="558" y="232" width="670" height="676" key="search.everywhere.popup/0.23.1680.989@0.23.1680.989" timestamp="1604865427396" />
   </component>
 </project>

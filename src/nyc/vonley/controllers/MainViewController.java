@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import nyc.vonley.contracts.CanvasImageReference;
 import nyc.vonley.helpers.TileMapCanvasView;
 import nyc.vonley.helpers.TileSetCanvasView;
+import nyc.vonley.models.Tile;
 import nyc.vonley.models.TileSet;
 
 import java.awt.image.BufferedImage;
@@ -134,10 +135,10 @@ public class MainViewController implements PixelDialogController.PixelDialogHand
     }
 
 
-    public void initialize_sets(int width, int height){
+    public void initialize_sets(int width, int height) {
         if (tileSetHandler == null) {
             tileSetHandler = new TileSetCanvasView(tile_canvas, fileImage, width, height);
-        }else{
+        } else {
             tileSetHandler.clear();
             tileSetHandler.setPixelDimension(width, height);
             tileSetHandler.setFile(fileImage);
@@ -146,7 +147,7 @@ public class MainViewController implements PixelDialogController.PixelDialogHand
             tileMapHandler = new TileMapCanvasView(map_canvas, fileImage, width, height);
             tileMapHandler.setCanvasHandlerReference(tileSetHandler);
             tileMapHandler.setImageReference(this);
-        }else{
+        } else {
             tileMapHandler.clear();
             tileMapHandler.setPixelDimension(width, height);
             tileMapHandler.setFile(fileImage);
@@ -171,5 +172,15 @@ public class MainViewController implements PixelDialogController.PixelDialogHand
     public BufferedImage getSubImage(int x, int y, int width, int height) {
         System.out.printf("X: %s, Y: %s, WIDTH: %s, HEIGHT: %s\n", x, y, width, height);
         return tileSetHandler.getSubimage(x, y, width, height);
+    }
+
+    @Override
+    public BufferedImage getSubImageAtAddress(long address) {
+        return getSubImageFromTile(Tile.create(address));
+    }
+
+    @Override
+    public BufferedImage getSubImageFromTile(Tile tile) {
+        return getSubImage(tile.getPositionX(), tile.getPositionY(), tile.getPixelW(), tile.getPixelH());
     }
 }
