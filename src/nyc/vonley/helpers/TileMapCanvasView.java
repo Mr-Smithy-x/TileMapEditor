@@ -3,9 +3,8 @@ package nyc.vonley.helpers;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
+import javafx.scene.input.*;
+import javafx.scene.paint.Color;
 import nyc.vonley.contracts.CanvasHandlerReferenceInterface;
 import nyc.vonley.contracts.CanvasImageReference;
 import nyc.vonley.models.Point;
@@ -15,11 +14,13 @@ import nyc.vonley.models.TileSet;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-public class TileMapCanvasView extends BaseCanvasView implements EventHandler<MouseEvent>{
+public class TileMapCanvasView extends BaseCanvasView implements EventHandler<MouseEvent> {
 
     private CanvasHandlerReferenceInterface canvasHandler;
     private CanvasImageReference imageReference;
     private TileSet tileSet;
+    private boolean collides;
+    private boolean isobject;
 
     public TileMapCanvasView(Canvas canvas, TileSet tileSet) {
         super(canvas, new File(String.format("%s/sets/%s", System.getProperty("user.dir"), tileSet.getMapImage())));
@@ -52,30 +53,64 @@ public class TileMapCanvasView extends BaseCanvasView implements EventHandler<Mo
         clear();
     }
 
-    public void drawImage(MouseEvent e){
+    public void drawImage(MouseEvent e) {
         double spx = e.getX();
         double spy = e.getY();
         this.drawImage(spx, spy);
     }
 
-    public void drawImage(double spx, double spy){
+    public void drawImage(double spx, double spy) {
         if (canvasHandler != null) {
             int selectedIndex = canvasHandler.getReference().getSelectedIndex();
-            BufferedImage image = imageReference.getImage(selectedIndex);
             int spx_remainder = (int) (spx % tile_width);
             int spy_remainder = (int) (spy % tile_height);
             int real_column = (int) (spx - spx_remainder);
             int real_row = (int) (spy - spy_remainder);
             long pointKey = Point.toLong(real_column, real_row);
-            int tileGridXOffset = image.getTileGridXOffset();
-            int tileGridYOffset = image.getTileGridYOffset();
-            long valueKey = Tile.toLong(Math.abs(tileGridXOffset), Math.abs(tileGridYOffset), image.getWidth(), image.getHeight());
-            tileSet.remove(pointKey);
-            tileSet.put(pointKey, valueKey);
-            canvas.getGraphicsContext2D().drawImage(SwingFXUtils.toFXImage(image, null), real_column, real_row);
+            if (pressing[SPACE] && tileSet.has(pointKey)) {
+                long value = tileSet.get(pointKey);
+                value = Tile.setCollision(value, true);
+                tileSet.remove(pointKey);
+                tileSet.put(pointKey, value);
+                BufferedImage image = imageReference.getSubImageAtAddress(value);
+                canvas.getGraphicsContext2D().drawImage(SwingFXUtils.toFXImage(image, null), real_column, real_row);
+                if (Tile.isCollisionTile(value)) {
+                    System.out.println("COLLIDE SET ENABLED");
+                    Color rgb = Color.rgb(255, 0, 0, 0.2);
+                    canvas.getGraphicsContext2D().setFill(rgb);
+                    canvas.getGraphicsContext2D().fillRect(real_column, real_row, tile_width, tile_height);
+                }
+                if (Tile.isObjectTile(value)) {
+                    System.out.println("OBJECT SET ENABLED");
+                    Color rgb = Color.rgb(0, 255, 0, 0.2);
+                    canvas.getGraphicsContext2D().setFill(rgb);
+                    canvas.getGraphicsContext2D().fillOval(real_column, real_row, tile_width, tile_height);
+                }
+            } else {
+
+                BufferedImage image = imageReference.getImage(selectedIndex);
+                int tileGridXOffset = image.getTileGridXOffset();
+                int tileGridYOffset = image.getTileGridYOffset();
+                long valueKey = Tile.toLong(Math.abs(tileGridXOffset), Math.abs(tileGridYOffset), image.getWidth(), image.getHeight(), collides || pressing[SPACE], isobject);
+                tileSet.remove(pointKey);
+                tileSet.put(pointKey, valueKey);
+                canvas.getGraphicsContext2D().drawImage(SwingFXUtils.toFXImage(image, null), real_column, real_row);
+
+                if (Tile.isCollisionTile(valueKey)) {
+                    System.out.println("COLLIDE SET ENABLED");
+                    Color rgb = Color.rgb(255, 0, 0, 0.2);
+                    canvas.getGraphicsContext2D().setFill(rgb);
+                    canvas.getGraphicsContext2D().fillRect(real_column, real_row, tile_width, tile_height);
+                }
+                if (Tile.isObjectTile(valueKey)) {
+                    System.out.println("OBJECT SET ENABLED");
+                    Color rgb = Color.rgb(0, 255, 0, 0.2);
+                    canvas.getGraphicsContext2D().setFill(rgb);
+                    canvas.getGraphicsContext2D().fillOval(real_column, real_row, tile_width, tile_height);
+                }
+            }
         }
     }
-
 
 
     @Override
@@ -83,13 +118,13 @@ public class TileMapCanvasView extends BaseCanvasView implements EventHandler<Mo
         if (e.getEventType() == MouseEvent.MOUSE_CLICKED) {
             drawImage(e);
         }
-        if(e.getEventType() == MouseEvent.MOUSE_PRESSED) {
+        if (e.getEventType() == MouseEvent.MOUSE_PRESSED) {
             System.out.println("MOUSE PRESSING");
         }
-        if(e.getEventType() == MouseEvent.MOUSE_DRAGGED) {
+        if (e.getEventType() == MouseEvent.MOUSE_DRAGGED) {
             drawImage(e);
         }
-        if(e.getEventType() == MouseEvent.DRAG_DETECTED){
+        if (e.getEventType() == MouseEvent.DRAG_DETECTED) {
             canvas.startDragAndDrop();
             System.out.println("DRAG_DETECTED");
         }
@@ -130,7 +165,7 @@ public class TileMapCanvasView extends BaseCanvasView implements EventHandler<Mo
             this.tileSet.clear();
         }
         this.tileSet = tileSet;
-        for (Point position: tileSet.pointIterator()) {
+        for (Point position : tileSet.pointIterator()) {
             Tile tile = Tile.create(tileSet.get(position));
             BufferedImage subImage = imageReference.getSubImage(
                     Math.abs(tile.getPositionX()),
@@ -150,5 +185,21 @@ public class TileMapCanvasView extends BaseCanvasView implements EventHandler<Mo
     public void handle(DragEvent event) {
         System.out.println("DRAGGING");
         drawImage(event.getX(), event.getY());
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        super.keyPressed(e);
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        super.keyReleased(e);
+        if (e.getCode() == KeyCode.Z) {
+            isobject = !isobject;
+        }
+        if (e.getCode() == KeyCode.SHIFT) {
+            collides = !collides;
+        }
     }
 }

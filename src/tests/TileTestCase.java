@@ -2,23 +2,10 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 
+import static nyc.vonley.models.Tile.toLong;
+
 public class TileTestCase {
 
-
-    public static long toLong(int position_x,
-                              int position_y,
-                              int pixel_w,
-                              int pixel_h,
-                              int collision,
-                              int is_object) {
-        long address = position_x;
-        address = (address << 12) + position_y;
-        address = (address << 8) + pixel_w;
-        address = (address << 8) + pixel_h;
-        address = (address << 2) + collision;
-        address = (address << 2) + is_object;
-        return address;
-    }
 
 
 
