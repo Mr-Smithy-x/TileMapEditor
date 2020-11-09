@@ -9,6 +9,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -25,6 +27,8 @@ public class MainViewController implements PixelDialogController.PixelDialogHand
 
     public Canvas map_canvas, tile_canvas;
     public MenuItem newMenuItem, openMenuItem, closeMenuItem, retileMenuItem, saveMenuItem;
+    public ComboBox jCollisionComboBox, jObjectComboBox, jForegroundComboBox;
+    public Label jTileOptions;
     private FileChooser.ExtensionFilter
             images = new FileChooser.ExtensionFilter("Image", "*.jpg", "*.png"),
             formats = new FileChooser.ExtensionFilter("Formats", "*.json");

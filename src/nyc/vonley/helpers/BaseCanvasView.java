@@ -140,6 +140,7 @@ public class BaseCanvasView implements EventHandler<MouseEvent> {
 
     public void keyPressed(KeyEvent e)
     {
+        System.out.printf("IS SPACE PRESSED", e.getCode().ordinal() == SPACE);
         pressing[e.getCode().ordinal()] = true;
     }
 

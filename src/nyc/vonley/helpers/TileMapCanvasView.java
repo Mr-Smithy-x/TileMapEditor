@@ -1,5 +1,6 @@
 package nyc.vonley.helpers;
 
+import com.sun.javafx.scene.control.skin.ScrollPaneSkin;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
@@ -69,9 +70,10 @@ public class TileMapCanvasView extends BaseCanvasView implements EventHandler<Mo
             long pointKey = Point.toLong(real_column, real_row);
             long tileValue = 0;
             BufferedImage image = null;
+
             if (pressing[SPACE] && tileSet.has(pointKey)) {
                 tileValue = tileSet.get(pointKey);
-                tileValue = Tile.setCollision(tileValue, true);
+                tileValue = Tile.setCollision(tileValue, pressing[SHFT]);
                 image = imageReference.getSubImageAtAddress(tileValue);
             } else {
                 image = imageReference.getImage(selectedIndex);
@@ -82,7 +84,7 @@ public class TileMapCanvasView extends BaseCanvasView implements EventHandler<Mo
                         Math.abs(tileGridYOffset),
                         image.getWidth(),
                         image.getHeight(),
-                        collides || pressing[SPACE],
+                        collides,
                         isobject
                 );
             }
@@ -104,6 +106,8 @@ public class TileMapCanvasView extends BaseCanvasView implements EventHandler<Mo
 
     @Override
     public void handle(MouseEvent e) {
+
+        canvas.requestFocus();
         if (e.getEventType() == MouseEvent.MOUSE_CLICKED) {
             drawImage(e);
         }
@@ -186,11 +190,13 @@ public class TileMapCanvasView extends BaseCanvasView implements EventHandler<Mo
     @Override
     public void keyPressed(KeyEvent e) {
         super.keyPressed(e);
+        System.out.println("LOL");
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         super.keyReleased(e);
+        System.out.println("LMAO");
         if (e.getCode() == KeyCode.Z) {
             isobject = !isobject;
         }
