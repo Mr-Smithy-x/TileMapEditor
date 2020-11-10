@@ -10,6 +10,7 @@ import java.io.*;
 public class Migration {
 
 
+    /*
     public static Tile old(long address) {
         long spos_x = (address >> 36) & 0xfff;
         long spos_y = (address >> 24) & 0xfff;
@@ -24,7 +25,7 @@ public class Migration {
         address = (address << 12) + pixel_w;
         address = (address << 12) + pixel_h;
         return address;
-    }
+    }*/
 
 
     public static void main(String[] args) throws IOException {
@@ -32,7 +33,7 @@ public class Migration {
         String maps = String.format("%s/assets/maps/", directory);
         String migration_dir = String.format("%s/migration/", maps);
         File file = new File(maps);
-        File[] mapsfiles = file.listFiles();
+        File[] mapsfiles = file.listFiles(pathname -> pathname.getName().endsWith(".json"));
 
         File migration = new File(migration_dir);
         if (!migration.exists()) {
@@ -49,10 +50,11 @@ public class Migration {
             }
             br.close();
 
+            System.out.println(f.getName());
             TileSet tileSet = gson.fromJson(sb.toString(), TileSet.class);
             for (long key : tileSet) {
                 long value = tileSet.get(key);
-                Tile oldTile = old(value);
+                Tile oldTile = Tile.createOld(value);
                 tileSet.getTiles().replace(key, oldTile.longValue());
             }
 
