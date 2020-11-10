@@ -1,10 +1,12 @@
 package nyc.vonley.helpers;
 
-import com.sun.javafx.scene.control.skin.ScrollPaneSkin;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.input.*;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import nyc.vonley.contracts.CanvasHandlerReferenceInterface;
 import nyc.vonley.contracts.CanvasImageReference;
@@ -19,18 +21,26 @@ public class TileMapCanvasView extends BaseCanvasView implements EventHandler<Mo
 
     private CanvasHandlerReferenceInterface canvasHandler;
     private CanvasImageReference imageReference;
+    private TileMapCallback onTileMapCallback;
     private TileSet tileSet;
+    private TileMapCallback tileMapCallback;
     private boolean collides;
     private boolean isobject;
 
-    public TileMapCanvasView(Canvas canvas, TileSet tileSet) {
+    public interface TileMapCallback {
+        void onTileClicked(Point point, Tile tile);
+    }
+
+    public TileMapCanvasView(Canvas canvas, TileSet tileSet, TileMapCallback tileMapCallback) {
         super(canvas, new File(String.format("%s/sets/%s", System.getProperty("user.dir"), tileSet.getMapImage())));
         this.tileSet = tileSet;
+        this.tileMapCallback = tileMapCallback;
         setPixelDimension(tileSet.getTileWidth(), tileSet.getTileHeight());
     }
 
-    public TileMapCanvasView(Canvas canvas, File file, int tile_width, int tile_height) {
+    public TileMapCanvasView(Canvas canvas, File file, int tile_width, int tile_height, TileMapCallback tileMapCallback) {
         super(canvas, file);
+        this.tileMapCallback = tileMapCallback;
         tileSet = new TileSet();
         tileSet.setMapImage(file.getName());
         tileSet.setTileWidth(tile_width);
@@ -74,6 +84,12 @@ public class TileMapCanvasView extends BaseCanvasView implements EventHandler<Mo
             if (pressing[SPACE] && tileSet.has(pointKey)) {
                 tileValue = tileSet.get(pointKey);
                 tileValue = Tile.setCollision(tileValue, pressing[SHFT]);
+                image = imageReference.getSubImageAtAddress(tileValue);
+            } else if (pressing[CTRL] && tileSet.has(pointKey)) {
+                tileValue = tileSet.get(pointKey);
+                if (tileMapCallback != null) {
+                    tileMapCallback.onTileClicked(Point.fromLong(pointKey), Tile.create(tileValue));
+                }
                 image = imageReference.getSubImageAtAddress(tileValue);
             } else {
                 image = imageReference.getImage(selectedIndex);

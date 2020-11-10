@@ -17,13 +17,14 @@ import javafx.stage.Stage;
 import nyc.vonley.contracts.CanvasImageReference;
 import nyc.vonley.helpers.TileMapCanvasView;
 import nyc.vonley.helpers.TileSetCanvasView;
+import nyc.vonley.models.Point;
 import nyc.vonley.models.Tile;
 import nyc.vonley.models.TileSet;
 
 import java.awt.image.BufferedImage;
 import java.io.*;
 
-public class MainViewController implements PixelDialogController.PixelDialogHandler, CanvasImageReference {
+public class MainViewController implements PixelDialogController.PixelDialogHandler, CanvasImageReference, TileMapCanvasView.TileMapCallback {
 
     public Canvas map_canvas, tile_canvas;
     public MenuItem newMenuItem, openMenuItem, closeMenuItem, retileMenuItem, saveMenuItem;
@@ -148,7 +149,7 @@ public class MainViewController implements PixelDialogController.PixelDialogHand
             tileSetHandler.setFile(fileImage);
         }
         if (tileMapHandler == null) {
-            tileMapHandler = new TileMapCanvasView(map_canvas, fileImage, width, height);
+            tileMapHandler = new TileMapCanvasView(map_canvas, fileImage, width, height, this);
             tileMapHandler.setCanvasHandlerReference(tileSetHandler);
             tileMapHandler.setImageReference(this);
         } else {
@@ -186,5 +187,13 @@ public class MainViewController implements PixelDialogController.PixelDialogHand
     @Override
     public BufferedImage getSubImageFromTile(Tile tile) {
         return getSubImage(tile.getPositionX(), tile.getPositionY(), tile.getPixelW(), tile.getPixelH());
+    }
+
+    @Override
+    public void onTileClicked(Point point, Tile tile) {
+        jTileOptions.setText(String.format("Tile: (%s, %s)\nCol,Object: (%s,%s)\n",
+                point.getX(), point.getY(),
+                tile.isCollision(), tile.isObject()
+        ));
     }
 }
