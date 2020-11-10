@@ -50,7 +50,7 @@ public class PixelParser {
                 int py = row * pixel_height;
                 WritableImage img = SwingFXUtils.toFXImage(subimage, null);
                 //tile_canvas.getGraphicsContext2D().drawImage(img, px, py, pixel_width, pixel_height);
-                tile_canvas.getGraphicsContext2D().drawImage(img,0, 0, pixel_width, pixel_height, px, py, pixel_width-2, pixel_height-2);
+                tile_canvas.getGraphicsContext2D().drawImage(img,0, 0, pixel_width, pixel_height, px, py, pixel_width-1, pixel_height-1);
 
             }
         }
