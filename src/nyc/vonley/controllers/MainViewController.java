@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import nyc.vonley.contracts.CanvasImageReference;
 import nyc.vonley.helpers.TileMapCanvasView;
 import nyc.vonley.helpers.TileSetCanvasView;
+import nyc.vonley.models.KeyValue;
 import nyc.vonley.models.Point;
 import nyc.vonley.models.Tile;
 import nyc.vonley.models.TileSet;
@@ -28,7 +29,8 @@ public class MainViewController implements PixelDialogController.PixelDialogHand
 
     public Canvas map_canvas, tile_canvas;
     public MenuItem newMenuItem, openMenuItem, closeMenuItem, retileMenuItem, saveMenuItem;
-    public ComboBox jCollisionComboBox, jObjectComboBox, jForegroundComboBox;
+    public ComboBox<KeyValue<Boolean>> jCollisionComboBox, jObjectComboBox;
+    public ComboBox<KeyValue<Integer>> jForegroundComboBox;
     public Label jTileOptions;
     private FileChooser.ExtensionFilter
             images = new FileChooser.ExtensionFilter("Image", "*.jpg", "*.png"),
@@ -39,6 +41,8 @@ public class MainViewController implements PixelDialogController.PixelDialogHand
     private Scene dialogScene;
     private TileSetCanvasView tileSetHandler;
     private TileMapCanvasView tileMapHandler;
+    private Point point;
+    private Tile tile;
 
     @FXML
     public void initialize() {
@@ -47,7 +51,20 @@ public class MainViewController implements PixelDialogController.PixelDialogHand
         closeMenuItem.setOnAction(onMenuItemClicked);
         retileMenuItem.setOnAction(onMenuItemClicked);
         saveMenuItem.setOnAction(onMenuItemClicked);
+        KeyValue<Boolean> keyFalse = new KeyValue<>("False", false);
+        KeyValue<Boolean> keyTrue = new KeyValue<>("True", true);
+        jCollisionComboBox.itemsProperty().get().addAll(keyFalse, keyTrue);
+        jObjectComboBox.itemsProperty().get().addAll(keyFalse, keyTrue);
+        jForegroundComboBox.itemsProperty().get().addAll(
+                new KeyValue<>("Ground", Tile.LEVEL_GROUND),
+                new KeyValue<>("Mid", Tile.LEVEL_MID),
+                new KeyValue<>("Sky", Tile.LEVEL_SKY)
+        );
+        jForegroundComboBox.setOnAction(this::onComboBoxClicked);
+        jCollisionComboBox.setOnAction(this::onComboBoxClicked);
+        jObjectComboBox.setOnAction(this::onComboBoxClicked);
     }
+
 
     protected void showDialog() throws IOException {
         if (stage == null) {
@@ -191,9 +208,36 @@ public class MainViewController implements PixelDialogController.PixelDialogHand
 
     @Override
     public void onTileClicked(Point point, Tile tile) {
+        this.point = point;
+        this.tile = tile;
         jTileOptions.setText(String.format("Tile: (%s, %s)\nCol,Object: (%s,%s)\n",
                 point.getX(), point.getY(),
                 tile.isCollision(), tile.isObject()
         ));
+        jForegroundComboBox.setValue(jForegroundComboBox.itemsProperty().get().get(tile.getLevel()));
+        jCollisionComboBox.setValue(jCollisionComboBox.itemsProperty().get().get(tile.getCollision()));
+        jObjectComboBox.setValue(jObjectComboBox.itemsProperty().get().get(tile.getObject()));
+    }
+
+
+    private void onComboBoxClicked(ActionEvent actionEvent) {
+        Object source = actionEvent.getSource();
+        long tileValue = tileMapHandler.getTiles().get(point.longValue());
+        if (source == jCollisionComboBox) {
+            KeyValue<Boolean> item = jCollisionComboBox.getSelectionModel().getSelectedItem();
+            tileValue = Tile.setCollision(tileValue,  item.getValue());
+        } else if (source == jObjectComboBox) {
+            KeyValue<Boolean> item = jObjectComboBox.getSelectionModel().getSelectedItem();
+            tileValue = Tile.setIsObject(tileValue,  item.getValue());
+        } else if (source == jForegroundComboBox) {
+            KeyValue<Integer> item = jForegroundComboBox.getSelectionModel().getSelectedItem();
+            tileValue = Tile.setLevel(tileValue,  item.getValue());
+        }
+        tileMapHandler.getTiles().put(point.longValue(), tileValue);
+        String tileHexString = Long.toHexString(tileValue);
+        String pointHexString = Long.toHexString(point.longValue());
+
+        jTileOptions.setText(String.format("Point Hex: %s\n Value Hex: %s", pointHexString, tileHexString));
+        tileMapHandler.redraw(point, Tile.create(tileValue));
     }
 }

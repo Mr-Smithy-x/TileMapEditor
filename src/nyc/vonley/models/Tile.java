@@ -154,6 +154,30 @@ public class Tile extends Number implements Comparable<Long> {
 
     //region bit manipulations
 
+
+    public static long setTransitionReference(long address, int transition_reference) {
+        long r = getTransitionReference(address);
+        address -= (r << 7); //reset;
+        address += (transition_reference << 7); //addback
+        return address;
+    }
+
+    public static long setTransitionType(long address, int transition_type) {
+        long t = getTransitionType(address);
+        address -= (t << 4); //reset;
+        address += (transition_type << 4); //addback
+        return address;
+    }
+
+
+    public static long setLevel(long address, int level) {
+        long l = getLevel(address);
+        address -= (l << 2); //reset;
+        address += (level << 2); //addback
+        return address;
+    }
+
+
     public static long setCollision(long address, boolean collides) {
         long collision = (address >> 1) & 0x1;
         if (collision == 0) { //currently no collision

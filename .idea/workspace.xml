@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/nyc/vonley/models/KeyValue.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/nyc/vonley/controllers/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/nyc/vonley/controllers/MainViewController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/nyc/vonley/helpers/TileMapCanvasView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/nyc/vonley/helpers/TileMapCanvasView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/nyc/vonley/models/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/nyc/vonley/models/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nyc/vonley/views/mainwindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/nyc/vonley/views/mainwindow.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tests/TileTestCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/TileTestCase.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -128,7 +130,7 @@
       <recent name="$PROJECT_DIR$/src/com/views" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TileTestCase.testShouldNotEqualPastRangeValues">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -255,6 +257,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TileTestCase.testChangeLevel" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TileMapEditor" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.TileTestCase" />
+      <option name="METHOD_NAME" value="testChangeLevel" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TileTestCase.testShouldNotEqualPastRangeValues" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TileMapEditor" />
       <extension name="coverage">
@@ -303,13 +322,15 @@
       <item itemvalue="JUnit.TileTestCase" />
       <item itemvalue="JUnit.TileTestCase.testBitmanipulation" />
       <item itemvalue="JUnit.TileTestCase.testShouldNotEqualPastRangeValues" />
+      <item itemvalue="JUnit.TileTestCase.testChangeLevel" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TileTestCase.testChangeLevel" />
+        <item itemvalue="JUnit.TileTestCase" />
         <item itemvalue="JUnit.TileTestCase.testShouldNotEqualPastRangeValues" />
         <item itemvalue="JUnit.TileTestCase.testBitmanipulation" />
         <item itemvalue="Application.Migration" />
-        <item itemvalue="JUnit.TileTestCase" />
       </list>
     </recent_temporary>
   </component>
@@ -341,10 +362,10 @@
       <screen x="0" y="23" width="1680" height="989" />
     </state>
     <state x="280" y="162" width="1071" height="772" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1680.989@0.23.1680.989" timestamp="1604847484647" />
-    <state x="989" y="212" key="#com.intellij.ide.util.MemberChooser" timestamp="1605044673627">
+    <state x="989" y="212" key="#com.intellij.ide.util.MemberChooser" timestamp="1605056440142">
       <screen x="0" y="23" width="1680" height="989" />
     </state>
-    <state x="989" y="212" key="#com.intellij.ide.util.MemberChooser/0.23.1680.989@0.23.1680.989" timestamp="1605044673627" />
+    <state x="989" y="212" key="#com.intellij.ide.util.MemberChooser/0.23.1680.989@0.23.1680.989" timestamp="1605056440142" />
     <state x="680" y="427" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1604698182549">
       <screen x="0" y="23" width="1680" height="989" />
     </state>
@@ -365,22 +386,22 @@
       <screen x="0" y="23" width="1680" height="989" />
     </state>
     <state x="342" y="23" key="CommitChangelistDialog2/0.23.1680.989@0.23.1680.989" timestamp="1604851673663" />
-    <state width="1339" height="304" key="GridCell.Tab.0.bottom" timestamp="1605046383617">
+    <state width="1339" height="304" key="GridCell.Tab.0.bottom" timestamp="1605065015225">
       <screen x="0" y="23" width="1680" height="989" />
     </state>
-    <state width="1339" height="304" key="GridCell.Tab.0.bottom/0.23.1680.989@0.23.1680.989" timestamp="1605046383617" />
-    <state width="1339" height="304" key="GridCell.Tab.0.center" timestamp="1605046383616">
+    <state width="1339" height="304" key="GridCell.Tab.0.bottom/0.23.1680.989@0.23.1680.989" timestamp="1605065015225" />
+    <state width="1339" height="304" key="GridCell.Tab.0.center" timestamp="1605065015224">
       <screen x="0" y="23" width="1680" height="989" />
     </state>
-    <state width="1339" height="304" key="GridCell.Tab.0.center/0.23.1680.989@0.23.1680.989" timestamp="1605046383616" />
-    <state width="1339" height="304" key="GridCell.Tab.0.left" timestamp="1605046383615">
+    <state width="1339" height="304" key="GridCell.Tab.0.center/0.23.1680.989@0.23.1680.989" timestamp="1605065015224" />
+    <state width="1339" height="304" key="GridCell.Tab.0.left" timestamp="1605065015223">
       <screen x="0" y="23" width="1680" height="989" />
     </state>
-    <state width="1339" height="304" key="GridCell.Tab.0.left/0.23.1680.989@0.23.1680.989" timestamp="1605046383615" />
-    <state width="1339" height="304" key="GridCell.Tab.0.right" timestamp="1605046383616">
+    <state width="1339" height="304" key="GridCell.Tab.0.left/0.23.1680.989@0.23.1680.989" timestamp="1605065015223" />
+    <state width="1339" height="304" key="GridCell.Tab.0.right" timestamp="1605065015224">
       <screen x="0" y="23" width="1680" height="989" />
     </state>
-    <state width="1339" height="304" key="GridCell.Tab.0.right/0.23.1680.989@0.23.1680.989" timestamp="1605046383616" />
+    <state width="1339" height="304" key="GridCell.Tab.0.right/0.23.1680.989@0.23.1680.989" timestamp="1605065015224" />
     <state x="374" y="124" key="SettingsEditor" timestamp="1604888731286">
       <screen x="0" y="23" width="1680" height="989" />
     </state>
@@ -389,9 +410,9 @@
       <screen x="0" y="23" width="1680" height="989" />
     </state>
     <state x="583" y="438" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.23.1680.989@0.23.1680.989" timestamp="1604724877263" />
-    <state x="558" y="232" width="670" height="676" key="search.everywhere.popup" timestamp="1605044288302">
+    <state x="558" y="232" width="670" height="676" key="search.everywhere.popup" timestamp="1605061970677">
       <screen x="0" y="23" width="1680" height="989" />
     </state>
-    <state x="558" y="232" width="670" height="676" key="search.everywhere.popup/0.23.1680.989@0.23.1680.989" timestamp="1605044288302" />
+    <state x="558" y="232" width="670" height="676" key="search.everywhere.popup/0.23.1680.989@0.23.1680.989" timestamp="1605061970677" />
   </component>
 </project>

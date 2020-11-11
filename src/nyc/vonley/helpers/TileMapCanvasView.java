@@ -27,6 +27,37 @@ public class TileMapCanvasView extends BaseCanvasView implements EventHandler<Mo
     private boolean collides;
     private boolean isobject;
 
+    public void redraw(Point point, Tile tile) {
+        int tile_width = tile.getPixelW();
+        int tile_height = tile.getPixelH();
+        BufferedImage subImage = imageReference.getSubImage(
+                Math.abs(tile.getPositionX()),
+                Math.abs(tile.getPositionY()),
+                tile_width,
+                tile_height
+        );
+        canvas.getGraphicsContext2D().drawImage(SwingFXUtils.toFXImage(subImage, null), point.getX(), point.getY());
+        if (tile.isCollision()) {
+            Color rgb = Color.rgb(255, 0, 0, 0.2);
+            canvas.getGraphicsContext2D().setFill(rgb);
+            canvas.getGraphicsContext2D().fillRect(point.getX(), point.getY(), tile_width, tile_height);
+        }
+        if (tile.isObject()) {
+            Color rgb = Color.rgb(0, 255, 0, 0.2);
+            canvas.getGraphicsContext2D().setFill(rgb);
+            canvas.getGraphicsContext2D().fillOval(point.getX(), point.getY(), tile_width, tile_height);
+        }
+        if (tile.getLevel() == Tile.LEVEL_MID) {
+            Color rgb = Color.rgb(255, 0, 255, 0.2);
+            canvas.getGraphicsContext2D().setFill(rgb);
+            canvas.getGraphicsContext2D().fillRect(point.getX(), point.getY(), tile_width, tile_height);
+        } else if (tile.getLevel() == Tile.LEVEL_SKY) {
+            Color rgb = Color.rgb(0, 0, 255, 0.2);
+            canvas.getGraphicsContext2D().setFill(rgb);
+            canvas.getGraphicsContext2D().fillRect(point.getX(), point.getY(), tile_width, tile_height);
+        }
+    }
+
     public interface TileMapCallback {
         void onTileClicked(Point point, Tile tile);
     }
@@ -85,6 +116,19 @@ public class TileMapCanvasView extends BaseCanvasView implements EventHandler<Mo
                 tileValue = tileSet.get(pointKey);
                 tileValue = Tile.setCollision(tileValue, pressing[SHFT]);
                 image = imageReference.getSubImageAtAddress(tileValue);
+            } else if (pressing[SHFT] && tileSet.has(pointKey)) {
+                tileValue = tileSet.get(pointKey);
+                if (pressing[_1]) {
+                    System.out.println("1");
+                    tileValue = Tile.setLevel(tileValue, Tile.LEVEL_GROUND);
+                } else if (pressing[_2]) {
+                    System.out.println("2");
+                    tileValue = Tile.setLevel(tileValue, Tile.LEVEL_MID);
+                } else if (pressing[_3]) {
+                    System.out.println("3");
+                    tileValue = Tile.setLevel(tileValue, Tile.LEVEL_SKY);
+                }
+                image = imageReference.getSubImageAtAddress(tileValue);
             } else if (pressing[CTRL] && tileSet.has(pointKey)) {
                 tileValue = tileSet.get(pointKey);
                 if (tileMapCallback != null) {
@@ -108,6 +152,15 @@ public class TileMapCanvasView extends BaseCanvasView implements EventHandler<Mo
             canvas.getGraphicsContext2D().drawImage(SwingFXUtils.toFXImage(image, null), real_column, real_row);
             if (Tile.isCollisionTile(tileValue)) {
                 Color rgb = Color.rgb(255, 0, 0, 0.2);
+                canvas.getGraphicsContext2D().setFill(rgb);
+                canvas.getGraphicsContext2D().fillRect(real_column, real_row, tile_width, tile_height);
+            }
+            if (Tile.getLevel(tileValue) == Tile.LEVEL_MID) {
+                Color rgb = Color.rgb(255, 0, 255, 0.2);
+                canvas.getGraphicsContext2D().setFill(rgb);
+                canvas.getGraphicsContext2D().fillRect(real_column, real_row, tile_width, tile_height);
+            } else if (Tile.getLevel(tileValue) == Tile.LEVEL_SKY) {
+                Color rgb = Color.rgb(0, 0, 255, 0.2);
                 canvas.getGraphicsContext2D().setFill(rgb);
                 canvas.getGraphicsContext2D().fillRect(real_column, real_row, tile_width, tile_height);
             }
@@ -193,6 +246,15 @@ public class TileMapCanvasView extends BaseCanvasView implements EventHandler<Mo
                 Color rgb = Color.rgb(0, 255, 0, 0.2);
                 canvas.getGraphicsContext2D().setFill(rgb);
                 canvas.getGraphicsContext2D().fillOval(position.getX(), position.getY(), tile_width, tile_height);
+            }
+            if (Tile.getLevel(address) == Tile.LEVEL_MID) {
+                Color rgb = Color.rgb(255, 0, 255, 0.2);
+                canvas.getGraphicsContext2D().setFill(rgb);
+                canvas.getGraphicsContext2D().fillRect(position.getX(), position.getY(), tile_width, tile_height);
+            } else if (Tile.getLevel(address) == Tile.LEVEL_SKY) {
+                Color rgb = Color.rgb(0, 0, 255, 0.2);
+                canvas.getGraphicsContext2D().setFill(rgb);
+                canvas.getGraphicsContext2D().fillRect(position.getX(), position.getY(), tile_width, tile_height);
             }
         }
     }
