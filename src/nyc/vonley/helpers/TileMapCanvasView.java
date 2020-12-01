@@ -111,8 +111,10 @@ public class TileMapCanvasView extends BaseCanvasView implements EventHandler<Mo
             long pointKey = Point.toLong(real_column, real_row);
             long tileValue = 0;
             BufferedImage image = null;
-
-            if (pressing[SPACE] && tileSet.has(pointKey)) {
+            if(pressing[ALT] && tileSet.has(pointKey)){
+                tileSet.remove(pointKey);
+                canvas.getGraphicsContext2D().clearRect(real_column * tile_width, real_row * tile_height, tile_width, tile_height);
+            }else if (pressing[SPACE] && tileSet.has(pointKey)) {
                 tileValue = tileSet.get(pointKey);
                 tileValue = Tile.setCollision(tileValue, pressing[SHFT]);
                 image = imageReference.getSubImageAtAddress(tileValue);

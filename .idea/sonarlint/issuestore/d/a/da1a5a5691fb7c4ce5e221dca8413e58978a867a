@@ -1,0 +1,63 @@
+
+k	java:S117F"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëŠåÇýÿÿÿÿ
+k	java:S117X"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(è¡†ßøÿÿÿÿ
+k	java:S117F"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëŠåÇýÿÿÿÿ
+k	java:S117F"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëŠåÇýÿÿÿÿ
+[
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(°¯®Ü
+[	java:S1073"AConstructor has 9 parameters, which is greater than 7 authorized.(ÂÍÝÝýÿÿÿÿ
+f	java:S117W"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÈÜ²È
+t	java:S116"_Rename this field "transition_reference" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ôå‡ÿ
+f	java:S117V"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Þß„º
+V	java:S107F"<Method has 9 parameters, which is greater than 7 authorized.(ëŠåÇýÿÿÿÿ
+k	java:S117F"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëŠåÇýÿÿÿÿ
+=
+java:S1659"'Declare "LEVEL_SKY" on a separate line.(°¯®Ü
+k	java:S1173"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÂÍÝÝýÿÿÿÿ
+Q	java:S125 "<This block of commented-out lines of code should be removed.(ï†ýf
+k	java:S117F"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëŠåÇýÿÿÿÿ
+l	java:S117ž"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿¶‘²øÿÿÿÿ
+k	java:S1173"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÂÍÝÝýÿÿÿÿ
+e	java:S117B"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÃÑº2
+k	java:S117/"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Þ¾²Îúÿÿÿÿ
+f	java:S117U"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÜÐ °
+k	java:S117/"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Þ¾²Îúÿÿÿÿ
+g	java:S117¥"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Í¿¡¯
+V	java:S125"<This block of commented-out lines of code should be removed.(‹®é ýÿÿÿÿ
+k	java:S117F"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëŠåÇýÿÿÿÿ
+k	java:S117Y"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÎÏ¢÷þÿÿÿÿ
+R	java:S125¯"<This block of commented-out lines of code should be removed.(èæÈ
+f	java:S117a"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ìã’°
+k	java:S117F"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëŠåÇýÿÿÿÿ
+k	java:S1173"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÂÍÝÝýÿÿÿÿ
+k	java:S1173"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÂÍÝÝýÿÿÿÿ
+o	java:S116"URename this field "position_y" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ö¸¾Øÿÿÿÿÿ
+e	java:S117B"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÃÑº2
+f	java:S117T"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŠËµæ
+k	java:S117/"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Þ¾²Îúÿÿÿÿ
+o	java:S116"URename this field "position_x" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(» ßÜûÿÿÿÿ
+[
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(Ñ®›‚
+e	java:S117B"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÃÑº2
+k	java:S117/"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Þ¾²Îúÿÿÿÿ
+=
+java:S1659"'Declare "LEVEL_MID" on a separate line.(°¯®Ü
+V	java:S125Y"<This block of commented-out lines of code should be removed.(ÎÏ¢÷þÿÿÿÿ
+k	java:S1173"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÂÍÝÝýÿÿÿÿ
+k	java:S117d"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€Áñˆþÿÿÿÿ
+G
+java:S1659"1Declare "TRANSITION_TELEPORT" on a separate line.(Ñ®›‚
+f	java:S117c"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ø¿þÚ
+l	java:S116"RRename this field "pixel_w" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Î„Û€øÿÿÿÿ
+p
+java:S1210¤"YOverride "equals(Object obj)" to comply with the contract of the "compareTo(T o)" method.(¡ž“Ž
+e	java:S117B"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÃÑº2
+l	java:S117¿"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚Æ°¾ûÿÿÿÿ
+R	java:S125§"<This block of commented-out lines of code should be removed.(Ëßèƒ
+C
+java:S1659"-Declare "TRANSITION_ROOM" on a separate line.(Ñ®›‚
+k	java:S117b"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(îÂŸŒüÿÿÿÿ
+g	java:S116"RRename this field "pixel_h" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­žãª
+t	java:S116"ZRename this field "transition_type" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹®é ýÿÿÿÿ
+e	java:S117B"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÃÑº2
+k	java:S1173"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÂÍÝÝýÿÿÿÿ

@@ -25,10 +25,11 @@ import nyc.vonley.models.TileSet;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
-public class MainViewController implements PixelDialogController.PixelDialogHandler, CanvasImageReference, TileMapCanvasView.TileMapCallback {
+public class MainViewController implements PixelDialogController.PixelDialogHandler, ResizeDialogController.ResizeDialogHandler,
+        CanvasImageReference, TileMapCanvasView.TileMapCallback {
 
     public Canvas map_canvas, tile_canvas;
-    public MenuItem newMenuItem, openMenuItem, closeMenuItem, retileMenuItem, saveMenuItem;
+    public MenuItem newMenuItem, openMenuItem, closeMenuItem, retileMenuItem, saveMenuItem, resizeCanvasMenuItem;
     public ComboBox<KeyValue<Boolean>> jCollisionComboBox, jObjectComboBox;
     public ComboBox<KeyValue<Integer>> jForegroundComboBox;
     public Label jTileOptions;
@@ -51,6 +52,7 @@ public class MainViewController implements PixelDialogController.PixelDialogHand
         closeMenuItem.setOnAction(onMenuItemClicked);
         retileMenuItem.setOnAction(onMenuItemClicked);
         saveMenuItem.setOnAction(onMenuItemClicked);
+        resizeCanvasMenuItem.setOnAction(onMenuItemClicked);
         KeyValue<Boolean> keyFalse = new KeyValue<>("False", false);
         KeyValue<Boolean> keyTrue = new KeyValue<>("True", true);
         jCollisionComboBox.itemsProperty().get().addAll(keyFalse, keyTrue);
@@ -72,6 +74,21 @@ public class MainViewController implements PixelDialogController.PixelDialogHand
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/pixeldialog.fxml"));
             Parent root = loader.load();
             PixelDialogController controller = loader.getController();
+            dialogScene = new Scene(root);
+            stage.setScene(dialogScene);
+            controller.setCloseHandler(this);
+        }
+        if (!stage.isShowing()) {
+            stage.showAndWait();
+        }
+    }
+
+    protected void showCanvasDialog() throws IOException {
+        if (stage == null) {
+            stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/resizedialog.fxml"));
+            Parent root = loader.load();
+            ResizeDialogController controller = loader.getController();
             dialogScene = new Scene(root);
             stage.setScene(dialogScene);
             controller.setCloseHandler(this);
@@ -126,6 +143,12 @@ public class MainViewController implements PixelDialogController.PixelDialogHand
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        } else if (source == resizeCanvasMenuItem) {
+            try {
+                showCanvasDialog();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     };
 
@@ -136,6 +159,12 @@ public class MainViewController implements PixelDialogController.PixelDialogHand
     @Override
     public void close() {
         stage.close();
+    }
+
+    @Override
+    public void onResize(int width, int height) {
+        map_canvas.setWidth(width);
+        map_canvas.setHeight(height);
     }
 
     public void loadTemplate(File json) throws IOException {
@@ -225,13 +254,13 @@ public class MainViewController implements PixelDialogController.PixelDialogHand
         long tileValue = tileMapHandler.getTiles().get(point.longValue());
         if (source == jCollisionComboBox) {
             KeyValue<Boolean> item = jCollisionComboBox.getSelectionModel().getSelectedItem();
-            tileValue = Tile.setCollision(tileValue,  item.getValue());
+            tileValue = Tile.setCollision(tileValue, item.getValue());
         } else if (source == jObjectComboBox) {
             KeyValue<Boolean> item = jObjectComboBox.getSelectionModel().getSelectedItem();
-            tileValue = Tile.setIsObject(tileValue,  item.getValue());
+            tileValue = Tile.setIsObject(tileValue, item.getValue());
         } else if (source == jForegroundComboBox) {
             KeyValue<Integer> item = jForegroundComboBox.getSelectionModel().getSelectedItem();
-            tileValue = Tile.setLevel(tileValue,  item.getValue());
+            tileValue = Tile.setLevel(tileValue, item.getValue());
         }
         tileMapHandler.getTiles().put(point.longValue(), tileValue);
         String tileHexString = Long.toHexString(tileValue);

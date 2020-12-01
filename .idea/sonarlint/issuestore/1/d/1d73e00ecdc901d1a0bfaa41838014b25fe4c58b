@@ -1,0 +1,18 @@
+
+S	java:S106M"9Replace this use of System.out or System.err by a logger.(éĞ«şÿÿÿÿ
+S	java:S106S"9Replace this use of System.out or System.err by a logger.(ù¾¿“øÿÿÿÿ
+N
+java:S1128"8Remove this unused import 'javafx.geometry.Orientation'.(¤‘õ—
+S	java:S106O"9Replace this use of System.out or System.err by a logger.(Œãûùüÿÿÿÿ
+?
+java:S1481H")Remove this unused "rows" local variable.(›¤Ù‰
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦×¦í
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëˆú¼şÿÿÿÿ
+f	java:S117I"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŠÈû“
+S	java:S106_"9Replace this use of System.out or System.err by a logger.(µõü¶ùÿÿÿÿ
+n	java:S116"YRename this field "selected_index" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŸÊÁÔ
+N	java:S106["9Replace this use of System.out or System.err by a logger.(ò£Ìş
+S	java:S106W"9Replace this use of System.out or System.err by a logger.(ÜÏÑòùÿÿÿÿ
+k	java:S117J"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·‹æêıÿÿÿÿ
+N
+java:S1854H"8Remove this useless assignment to local variable "rows".(›¤Ù‰

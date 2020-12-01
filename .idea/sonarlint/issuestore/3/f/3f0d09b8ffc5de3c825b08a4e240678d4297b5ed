@@ -1,0 +1,31 @@
+
+h
+java:S3776h"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(İÒ¥½
+T	java:S106Ñ"9Replace this use of System.out or System.err by a logger.(µõü¶ùÿÿÿÿ
+O	java:S106º"9Replace this use of System.out or System.err by a logger.(ôËŒ
+k	java:S117 "QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ç®çãÿÿÿÿÿ
+O	java:S106Í"9Replace this use of System.out or System.err by a logger.(ò£Ìş
+j
+java:S2184t"HCast one of the operands of this multiplication operation to a "double".(˜¼ùßúÿÿÿÿ8£¹Ö“Ş.
+f	java:S117l"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡ßÒ–
+O	java:S106‚"9Replace this use of System.out or System.err by a logger.(ºÙ„½
+e	java:S117H"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Øòº
+k	java:S117T"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Œìûİşÿÿÿÿ
+N	java:S106—"9Replace this use of System.out or System.err by a logger.(»ŒŞv
+e	java:S117k"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£«î5
+O	java:S106‘"9Replace this use of System.out or System.err by a logger.(´¢˜
+k	java:S117T"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Œìûİşÿÿÿÿ
+e	java:S117H"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Øòº
+N	java:S106Š"9Replace this use of System.out or System.err by a logger.(¶…Ép
+k	java:S117n"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”Şıùøÿÿÿÿ
+M	java:S106|"9Replace this use of System.out or System.err by a logger.(¸ØïU
+P
+java:S1068"5Remove this unused "onTileMapCallback" private field.(„­Ú€ùÿÿÿÿ
+T	java:S106Á"9Replace this use of System.out or System.err by a logger.(ĞŸûŞøÿÿÿÿ
+T	java:S106Å"9Replace this use of System.out or System.err by a logger.(ù¾¿“øÿÿÿÿ
+k	java:S117m"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨®òÿÿÿÿÿ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(İè¬øÿÿÿÿ
+j
+java:S2184t"HCast one of the operands of this multiplication operation to a "double".(˜¼ùßúÿÿÿÿ8£¹Ö“Ş.
+T	java:S106É"9Replace this use of System.out or System.err by a logger.(ÜÏÑòùÿÿÿÿ
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™ÕÆ

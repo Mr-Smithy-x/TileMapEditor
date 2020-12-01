@@ -1,0 +1,64 @@
+
+s
+java:S1104 "XMake saveMenuItem a static final constant or non-public and provide accessors if needed.(ÕÁ•øÿÿÿÿ
+p	java:S100½"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ã½ºâûÿÿÿÿ8Ï³ıÚß.
+T
+java:S1659 "2Declare "resizeCanvasMenuItem" on a separate line.(ÕÁ•øÿÿÿÿ8´ÜêÚß.
+q
+java:S1104!"[Make jObjectComboBox a static final constant or non-public and provide accessors if needed.(Ú¤ƒô
+u
+java:S1104""_Make jForegroundComboBox a static final constant or non-public and provide accessors if needed.(®†à
+G
+java:S1659 ",Declare "retileMenuItem" on a separate line.(ÕÁ•øÿÿÿÿ
+o	java:S116"URename this field "map_canvas" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ö„Ï‰ıÿÿÿÿ
+s	java:S117´"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÖáŒıÿÿÿÿ8Ï³ıÚß.
+s
+java:S1104 "XMake openMenuItem a static final constant or non-public and provide accessors if needed.(ÕÁ•øÿÿÿÿ
+E
+java:S1659 "*Declare "saveMenuItem" on a separate line.(ÕÁ•øÿÿÿÿ
+t
+java:S1104 "YMake closeMenuItem a static final constant or non-public and provide accessors if needed.(ÕÁ•øÿÿÿÿ
+o
+java:S2095«"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(Ÿ¿¥úÿÿÿÿ8Ï³ıÚß.
+C
+java:S1659!"-Declare "jObjectComboBox" on a separate line.(Ú¤ƒô
+F
+java:S1659 "+Declare "closeMenuItem" on a separate line.(ÕÁ•øÿÿÿÿ
+D
+java:S1659")Declare "tile_canvas" on a separate line.(ö„Ï‰ıÿÿÿÿ
+A
+java:S1659("&Declare "fileJson" on a separate line.(øæ¡‘ûÿÿÿÿ
+[	java:S106à"9Replace this use of System.out or System.err by a logger.(ìâ¼şşÿÿÿÿ8Ï³ıÚß.
+o
+java:S3457"Q%n should be used in place of \n to produce the platform-specific line separator.(‹ÔÓË8Ï³ıÚß.
+>
+java:S1068."(Remove this unused "tile" private field.(µ´Á
+s
+java:S1104#"XMake jTileOptions a static final constant or non-public and provide accessors if needed.(¢—´ ÿÿÿÿÿ
+r
+java:S1104 "WMake newMenuItem a static final constant or non-public and provide accessors if needed.(ÕÁ•øÿÿÿÿ
+q
+java:S1104"VMake map_canvas a static final constant or non-public and provide accessors if needed.(ö„Ï‰ıÿÿÿÿ
+i
+java:S1450."SRemove the "tile" field and declare it as a local variable in the relevant methods.(µ´Á
+m
+java:S3457ò"Q%n should be used in place of \n to produce the platform-specific line separator.(Õ§õıÿÿÿÿ
+G
+java:S1068(",Remove this unused "fileJson" private field.(øæ¡‘ûÿÿÿÿ
+r
+java:S1104"WMake tile_canvas a static final constant or non-public and provide accessors if needed.(ö„Ï‰ıÿÿÿÿ
+E	java:S108|")Either remove or fill this block of code.(Ï‡ªÂ8Ï³ıÚß.
+u
+java:S1104 "ZMake retileMenuItem a static final constant or non-public and provide accessors if needed.(ÕÁ•øÿÿÿÿ
+p	java:S116"VRename this field "tile_canvas" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ö„Ï‰ıÿÿÿÿ
+:
+java:S1659&"%Declare "formats" on a separate line.(ƒû®:
+t
+java:S3457à"Q%n should be used in place of \n to produce the platform-specific line separator.(ìâ¼şşÿÿÿÿ8Ï³ıÚß.
+g	java:S117³"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(òí’¤
+t
+java:S1104!"^Make jCollisionComboBox a static final constant or non-public and provide accessors if needed.(Ú¤ƒô
+‚
+java:S1104 "`Make resizeCanvasMenuItem a static final constant or non-public and provide accessors if needed.(ÕÁ•øÿÿÿÿ8´ÜêÚß.
+E
+java:S1659 "*Declare "openMenuItem" on a separate line.(ÕÁ•øÿÿÿÿ
